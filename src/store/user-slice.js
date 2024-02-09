@@ -7,8 +7,14 @@ const userSlice = createSlice({
     user: null,
   },
   reducers: {
-    updateUserData(state, action) {
+    loginUserData(state, action) {
       const ueserData = action.payload;
+      state.user = ueserData;
+      state.isLoggedIn = true;
+    },
+    logoutUsrData(state, action) {
+      state.user = null;
+      state.isLoggedIn = false;
     },
   },
 });

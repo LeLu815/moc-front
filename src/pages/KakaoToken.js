@@ -1,17 +1,19 @@
 import { useLoaderData, defer, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import { getKakaoToken, sendKaKaoToken } from "../util/kakoAuth";
-import { useEffect } from "react";
+import { userAction } from "../store/user-slice";
 
 const KakaoTokenPage = () => {
   const navigate = useNavigate();
   // 유저데이터, 엑세스, 리프레시 토큰이 넘어온다.
   const { okay } = useLoaderData("kakao-token");
   useEffect(() => {
-    // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
-    // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
     if (okay.result) {
       const { user } = okay;
+      // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
+      userAction.loginUserData(user);
+      // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
       navigate("/");
     } else {
       navigate("/login");
