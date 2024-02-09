@@ -4,15 +4,28 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import "./App.css";
+import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
+import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/login/token",
+    id: "kakao-token",
+    element: <KakaoTokenPage />,
+    loader: tokenLoader,
   },
 ]);
 
@@ -29,7 +42,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
