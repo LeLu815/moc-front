@@ -16,6 +16,11 @@ const KakaoTokenPage = () => {
       // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
       dispatch(userAction.loginUserData(user));
       // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
+
+      // 로컬스토리지와 세션 스토리지에 저장해준다.
+      sessionStorage.setItem("token", "dcadcdsvdwvsdvsdv");
+      localStorage.setItem("token", "adcasdcascascasc");
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     } else {
       navigate("/login");

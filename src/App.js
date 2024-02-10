@@ -7,25 +7,32 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import "./App.css";
+import RootPage from "./pages/Root";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
+import { defaultLoader } from "./util/auth";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/login/token",
-    id: "kakao-token",
-    element: <KakaoTokenPage />,
-    loader: tokenLoader,
+    element: <RootPage />,
+    id: "root",
+    loader: defaultLoader,
+    children: [
+      { index: true, element: <HomePage /> },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/login/token",
+        id: "kakao-token",
+        element: <KakaoTokenPage />,
+        loader: tokenLoader,
+      },
+    ],
   },
 ]);
 

@@ -16,6 +16,15 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
+    replaceUserData(state, action) {
+      // 여기서 토큰을 왜받음?
+      const {
+        user,
+        token: { accese, refresh },
+      } = action.payload;
+      state.user = user;
+      state.isLoggedIn = Boolean(user);
+    },
   },
 });
 

@@ -3,13 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { LoginBtn } from "./LoginBtn";
 import { kakaoAccessFunc } from "../util/kakoAuth";
+import { userAction } from "../store/user-slice";
 
 const Header = (props) => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
 
   const handleLogin = () => {
     kakaoAccessFunc();
+  };
+  const handleLogout = () => {
+    // 토큰 삭제하기
+    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(userAction.logoutUsrData());
   };
 
   return (
@@ -22,7 +31,7 @@ const Header = (props) => {
       {isLoggedIn && (
         <div>
           <span>{user.nickname}님 안녕하세요!</span>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
         </div>
       )}
     </>
