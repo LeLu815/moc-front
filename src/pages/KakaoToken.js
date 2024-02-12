@@ -5,12 +5,21 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 
 import { getKakaoToken, sendKaKaoToken } from "../util/kakoAuth";
 import { userAction } from "../store/user-slice";
+import { saveToken } from "../reactQuery/Auth";
 
 const KakaoTokenPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // 유저데이터, 엑세스, 리프레시 토큰이 넘어온다.
   const { okay } = useLoaderData("kakao-token");
+  const { accesMutate } = useMutation({
+    queryKey: ["acceseToken"],
+    mutationFn: saveToken,
+  });
+  const { refreshMutate } = useMutation({
+    queryKey: ["refreshToken"],
+    mutationFn: saveToken,
+  });
   useEffect(() => {
     if (okay.result) {
       const { user } = okay;
@@ -19,6 +28,10 @@ const KakaoTokenPage = () => {
       dispatch(userAction.loginUserData({ user }));
       console.log();
       // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
+      // 엑세스 토큰과 리프레쉬 토큰은 별도의 쿼리키로 관리되어야 한다.
+      // 각각 스테일 타임과 케시 타임이 다르고 업데이트 되는 함수도 달랴야 한다.
+      accesMutate();
+      refreshMutate();
 
       navigate("/");
     } else {
