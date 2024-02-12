@@ -9,21 +9,21 @@ const userSlice = createSlice({
   reducers: {
     loginUserData(state, action) {
       const ueserData = action.payload;
-      state.user = ueserData;
+      state.user = ueserData.user;
       state.isLoggedIn = true;
+      console.log("loginUserData :", ueserData.user);
+      console.log("state :", state.user);
     },
     logoutUsrData(state, action) {
       state.user = null;
       state.isLoggedIn = false;
     },
+    // 토큰은 리액트 쿼리에서 받기!
     replaceUserData(state, action) {
-      // 여기서 토큰을 왜받음?
-      const {
-        user,
-        token: { accese, refresh },
-      } = action.payload;
+      const { user, isLoggedIn } = action.payload;
+      console.log("replaceUserData :", user, isLoggedIn);
       state.user = user;
-      state.isLoggedIn = Boolean(user);
+      state.isLoggedIn = isLoggedIn;
     },
   },
 });

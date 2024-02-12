@@ -10,8 +10,9 @@ export function getAuthToken() {
 }
 
 export function getUserFromLocal() {
-  const user = localStorage.getItem("user");
-
+  const stringUser = localStorage.getItem("user");
+  const user = JSON.parse(stringUser);
+  console.log("getUserFromLocal :", user, Boolean(user));
   if (!user) {
     return null;
   }
@@ -22,6 +23,7 @@ export function defaultLoader() {
   const { accese, refresh } = getAuthToken();
   const user = getUserFromLocal();
 
+  console.log("defaultLoader :", user);
   return { user, token: { accese, refresh } };
 }
 

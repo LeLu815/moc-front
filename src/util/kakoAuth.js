@@ -32,6 +32,14 @@ export const sendKaKaoToken = async (token) => {
       const resDate = await response.json();
       console.log("resDate :", resDate);
       // 여기서 백엔드로부터 받은 토큰을 각각 세션, 로컬 스토리지에 저장해야 한다.
+      sessionStorage.setItem("token", "dcadcdsvdwvsdvsdv");
+      localStorage.setItem("token", "adcasdcascascasc");
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          nickname: "Leein",
+        })
+      );
       return {
         result: true,
         user: {

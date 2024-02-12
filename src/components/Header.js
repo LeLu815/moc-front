@@ -9,6 +9,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
+  // 리덕스 값이 변하면 랜더링이 다시되나? 예
 
   const handleLogin = () => {
     kakaoAccessFunc();

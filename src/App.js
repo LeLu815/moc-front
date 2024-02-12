@@ -27,6 +27,7 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        // 이 라우터 보호할 방법을 찾아야한다
         path: "/login/token",
         id: "kakao-token",
         element: <KakaoTokenPage />,

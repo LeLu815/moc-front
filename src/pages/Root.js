@@ -10,11 +10,19 @@ const RootPage = () => {
   const {
     user,
     token: { accese, refresh },
-  } = useLoaderData();
+  } = useLoaderData("root");
   // useEffect로 최초로 바꿔주기
+  // 리액트 쿼리로 토큰을 저장해야 한다.
+  console.log("RootPage :", user);
   useEffect(() => {
-    dispatch(userAction.replaceUserData({ user, token: { accese, refresh } }));
-  }, []);
+    if (user) {
+      console.log("RootPage-yes :", user);
+      dispatch(userAction.replaceUserData({ user, isLoggedIn: true }));
+    } else {
+      console.log("RootPage-no :", user);
+      dispatch(userAction.replaceUserData({ user, isLoggedIn: false }));
+    }
+  }, [user]);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import { useLoaderData, defer, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 import { getKakaoToken, sendKaKaoToken } from "../util/kakoAuth";
 import { userAction } from "../store/user-slice";
@@ -13,14 +14,12 @@ const KakaoTokenPage = () => {
   useEffect(() => {
     if (okay.result) {
       const { user } = okay;
+
       // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
-      dispatch(userAction.loginUserData(user));
+      dispatch(userAction.loginUserData({ user }));
+      console.log();
       // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
 
-      // 로컬스토리지와 세션 스토리지에 저장해준다.
-      sessionStorage.setItem("token", "dcadcdsvdwvsdvsdv");
-      localStorage.setItem("token", "adcasdcascascasc");
-      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     } else {
       navigate("/login");
@@ -37,9 +36,8 @@ export default KakaoTokenPage;
 
 export async function loader({ request, params }) {
   const token = getKakaoToken();
-  console.log(token);
   // 여기서 백엔드에게 토큰을 넘겨주면 결과 값은 엑세스 토큰이랑 리프레시 토큰이랑 유저 데이터가 넘어올까?
   return defer({
-    okay: await sendKaKaoToken(),
+    okay: await sendKaKaoToken(token),
   });
 }
