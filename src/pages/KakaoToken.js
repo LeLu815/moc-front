@@ -9,16 +9,20 @@ import { userAction } from "../store/user-slice";
 const KakaoTokenPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // 유저데이터, 엑세스, 리프레시 토큰이 넘어온다.
-  const { okay } = useLoaderData("kakao-token");
-  useEffect(() => {
-    if (okay.result) {
-      const { user } = okay;
 
+  // 유저데이터, 엑세스, 리프레시 토큰이 넘어온다.
+  const returnData = useLoaderData("kakao-token");
+  useEffect(() => {
+    if (returnData.okay.result) {
+      const {
+        okay: {
+          user,
+          token: { access, refresh },
+        },
+      } = returnData;
       // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
       dispatch(userAction.loginUserData({ user }));
-      console.log();
-      // 받은 토큰은 리액트 쿼리에 키로 등록하고 관리해준다.
+      dispatch(userAction.replaceToken({ access }));
 
       navigate("/");
     } else {
@@ -26,6 +30,7 @@ const KakaoTokenPage = () => {
     }
   }, []);
   return (
+    // 이 부분은 팝업창으로 변경할 예정입니다.
     <div>
       <p>카카오 로그인을 위한 토큰이 받아지는 임시 페이지 입니다.</p>
     </div>

@@ -13,7 +13,7 @@ import LoginPage from "./pages/Login";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
