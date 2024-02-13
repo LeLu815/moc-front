@@ -1,19 +1,14 @@
 // import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 
-import { LoginBtn } from "./LoginBtn";
-import { kakaoAccessFunc } from "../util/kakoAuth";
 import { userAction } from "../store/user-slice";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
   // 리덕스 값이 변하면 랜더링이 다시되나? 예
-
-  const handleLogin = () => {
-    kakaoAccessFunc();
-  };
   const handleLogout = () => {
     // 토큰 삭제하기
     sessionStorage.removeItem("token");
@@ -26,7 +21,8 @@ const Header = (props) => {
     <>
       {!isLoggedIn && (
         <div>
-          <LoginBtn onClick={handleLogin} />
+          {/* <LoginBtn onClick={handleLogin} /> */}
+          <Link to="/login">로그인하러가기</Link>
         </div>
       )}
       {isLoggedIn && (
