@@ -1,11 +1,22 @@
-import classes from "./write.module.css"
+import React from 'react';
+import classes from './write.module.css';
+import WritingArea from './WritingArea.js';
+import Advertisement from './Advertisement';
+import Footer from './Footer';
 
-const Write =()=>{
-    return <>
-    <div className={classes["w1"]}>
-        <h1>write 컴퍼넌트</h1>
+const Write = () => {
+  return (
+    <div className={classes.container}>
+      <div className={classes.writeContainer}>
+        <h1 className={classes.title}>글쓰기</h1>
+        <WritingArea />
+      </div>
+      <div className={classes.adContainer}>
+        <Advertisement />
+      </div>
+      <Footer />
     </div>
-    </>
-}
+  );
+};
 
-export default Write
+export default Write;
