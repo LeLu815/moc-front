@@ -4,7 +4,7 @@ import { redirect } from "react-router-dom";
 
 // 리다이렉션 url로 보낸다음 엑세스 토큰 받기
 export const kakaoAccessFunc = () => {
-  const link = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_KAKAOLOGIN_APPKEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`;
+  const link = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_KAKAOLOGIN_APPKEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`;
   window.location.href = link;
 };
 
@@ -23,7 +23,7 @@ export const sendKaKaoToken = async (token) => {
   // );
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/${token}/`
+      `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/?code=${token}`
     );
     if (response.ok) {
       const resDate = await response.json();

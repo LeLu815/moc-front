@@ -11,24 +11,24 @@ const KakaoTokenPage = () => {
   const dispatch = useDispatch();
 
   // 유저데이터, 엑세스, 리프레시 토큰이 넘어온다.
-  const returnData = useLoaderData("kakao-token");
-  useEffect(() => {
-    if (returnData.okay.result) {
-      const {
-        okay: {
-          user,
-          token: { access, refresh },
-        },
-      } = returnData;
-      // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
-      dispatch(userAction.loginUserData({ user }));
-      dispatch(userAction.replaceToken({ access }));
+  // const returnData = useLoaderData("kakao-token");
+  // useEffect(() => {
+  //   if (returnData.okay.result) {
+  //     const {
+  //       okay: {
+  //         user,
+  //         token: { access, refresh },
+  //       },
+  //     } = returnData;
+  //     // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
+  //     dispatch(userAction.loginUserData({ user }));
+  //     dispatch(userAction.replaceToken({ access }));
 
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
-  }, []);
+  //     navigate("/");
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // }, []);
   return (
     // 이 부분은 팝업창으로 변경할 예정입니다.
     <div>
@@ -42,6 +42,7 @@ export default KakaoTokenPage;
 export async function loader({ request, params }) {
   const token = getKakaoToken();
   // 여기서 백엔드에게 토큰을 넘겨주면 결과 값은 엑세스 토큰이랑 리프레시 토큰이랑 유저 데이터가 넘어올까?
+  // return { leein: "perfect!" };
   return defer({
     okay: await sendKaKaoToken(token),
   });
