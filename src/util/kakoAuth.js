@@ -16,37 +16,27 @@ export const getKakaoToken = () => {
 
 export const sendKaKaoToken = async (token) => {
   // 데이터를 보내야하는데...
+  console.log("sendKaKaoToken :", token);
+  // console.log(
+  //   "REACT_APP_SERVER_IP :",
+  //   `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/`
+  // );
   try {
-    console.log("페이크 url :", process.env.REACT_APP_TOEKN_SEND_FAKE);
-    const response = await fetch(process.env.REACT_APP_TOEKN_SEND_FAKE);
-    // const response = await fetch(process.env.REACT_APP_TOEKN_SEND_FAKE, {
-    //   method: "POST",
-    //   mode: "*cors", // no-cors, *cors, same-origin
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // 'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   body: JSON.stringify("유저이름으로시험해볼래요"),
-    // });
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/${token}/`
+    );
     if (response.ok) {
       const resDate = await response.json();
       // 여기서 백엔드로부터 받은 토큰을 각각 세션, 로컬 스토리지에 저장해야 한다.
-      sessionStorage.setItem("token", "dcadcdsvdwvsdvsdv");
-      localStorage.setItem("token", "adcasdcascascasc");
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          nickname: "Leein",
-        })
-      );
+      sessionStorage.setItem("token", resDate.data.access_token);
+      localStorage.setItem("token", resDate.data.refresh_token);
+      localStorage.setItem("user", JSON.stringify(resDate.data.user));
       return {
         result: true,
-        user: {
-          nickname: "Leein",
-        },
+        user: resDate.data.user,
         token: {
-          access: "dcadcdsvdwvsdvsdv",
-          refresh: "adcasdcascascasc",
+          access: resDate.data.access_token,
+          refresh: resDate.data.refresh_token,
         },
       };
     } else {
@@ -58,5 +48,3 @@ export const sendKaKaoToken = async (token) => {
     return { result: false };
   }
 };
-
-// export const sendKaKaoAccessToken = async (token) => {};

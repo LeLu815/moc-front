@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 
 import Header from "../components/Header";
 import { userAction } from "../store/user-slice";
-import { getAccessToken, getRefreshToken } from "../reactQuery/queryFunc";
 
 const RootPage = () => {
   const dispatch = useDispatch();
