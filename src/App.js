@@ -10,6 +10,7 @@ import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
 import { defaultLoader } from './util/auth';
 import Write from './components/write';
 import MainPage from './components/MainPage';
+import MyPage from './components/MyPage';
 
 // Create a query client instance
 const queryClient = new QueryClient();
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "mainpage",
         element: <MainPage />
+      },
+      {
+        path: "mypage",
+        element: <MyPage />
       }
     ],
   },

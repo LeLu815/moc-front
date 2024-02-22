@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .topNav {
+    display: flex;
+    justify-content: space-between;
+    background: #f1f1f1;
+    padding: 1rem;
+    /* Add your own styles */
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background: #f3f3f3;
+    padding: 1rem;
+    /* Add your own styles */
+  }
+  
+  
+  .menu {
+    margin-top: 1rem;
+    /* Add your own styles for the menu */
+  }
+  
+  .menu a {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Add your own styles for the menu links */
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .inputgroup {
+    margin-bottom: 1rem;
+  }
+  
+  .inputgroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Add your own styles for the label */
+  }
+  
+  .inputgroup input {
+    width: 100%;
+    padding: 0.5rem;
+    /* Add your own styles for the input */
+  }
+  
+  .footer {
+    background: #f1f1f1;
+    padding: 1rem;
+    text-align: center;
+    /* Add your own styles */
+  }
+  
