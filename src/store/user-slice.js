@@ -5,7 +5,6 @@ const userSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     user: null,
-    token: null,
   },
   reducers: {
     loginUserData(state, action) {
@@ -16,7 +15,6 @@ const userSlice = createSlice({
     logoutUsrData(state, action) {
       state.user = null;
       state.isLoggedIn = false;
-      state.token = null;
     },
     // 토큰은 리액트 쿼리에서 받기!
     replaceUserData(state, action) {
@@ -24,10 +22,10 @@ const userSlice = createSlice({
       state.user = user;
       state.isLoggedIn = isLoggedIn;
     },
-    replaceToken(state, action) {
-      const { token } = action.payload;
-      state.token = token;
-    },
+    // replaceToken(state, action) {
+    //   const { token } = action.payload;
+    //   state.token = token;
+    // },
   },
 });
 
