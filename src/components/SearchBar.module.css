@@ -1,6 +1,6 @@
 .searchBar {
     position: absolute; /* 절대 위치 설정 */
-    top: 25%; /* 화면 상단에서 20% 아래에 위치 */
+    top: 15%; /* 화면 상단에서 20% 아래에 위치 */
     left: 25%; /* 왼쪽에서 20% 위치 */
     right: 25%; /* 오른쪽에서 20% 위치 */
     display: flex; /* Flexbox 사용 */

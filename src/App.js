@@ -11,6 +11,7 @@ import { defaultLoader } from './util/auth';
 import Write from './components/write';
 import MainPage from './components/MainPage';
 import MyPage from './components/MyPage';
+import PostPage from './components/PostPage';
 
 // Create a query client instance
 const queryClient = new QueryClient();
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
     id: "root",
     loader: defaultLoader,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, 
+        element: <HomePage /> },
       {
         path: '/login',
         element: <LoginPage />,
@@ -37,18 +39,21 @@ const router = createBrowserRouter([
         path: '/write',
         element: <Write />
       },
-      // Add more routes as needed
       {
-        path: "mainpage",
+        path: "/Mainpage",
         element: <MainPage />
       },
       {
-        path: "mypage",
+        path: "/Mypage",
         element: <MyPage />
       }
+      ,
+      {
+        path: "/PostPage",
+        element: <PostPage />
+      },
     ],
   },
-  // Add more route objects as needed
 ]);
 
 function App() {
