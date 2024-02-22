@@ -11,6 +11,7 @@ const HomePage = () => {
   return (
     <>
       <p>여기는 Moc 페이지 입니다.</p>
+      <Link to="/write">write 페이지 가기!</Link>
       {isLoggedIn && <MyInput />}
     </>
   );

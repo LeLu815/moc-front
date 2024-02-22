@@ -12,6 +12,7 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
+import Write from "./components/write";
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         id: "kakao-token",
         element: <KakaoTokenPage />,
         loader: tokenLoader,
+      },
+      {
+        path: "/write",
+        element: <Write />,
       },
     ],
   },
