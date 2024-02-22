@@ -6,63 +6,153 @@
   
   .topNav {
     display: flex;
-    justify-content: space-between;
-    background: #f1f1f1;
+    margin-bottom: 65px; /* Center items horizontally */
+    margin-top: 10px;
     padding: 1rem;
-    /* Add your own styles */
+    background-color: #ffffff;
+    font-size: 1rem;
+  }
+  
+  .navItem {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    color: #007bff; /* Link color */
+  }
+  
+  .navSeparator {
+    margin: 0 0.5rem; /* Space around the separator */
+    color: #007bff; /* Separator color, can be changed if needed */
   }
   
   .content {
     display: flex;
     flex: 1;
-    flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between; /* This will space out the main content and sidebar */
   }
+  
+  .formContainer {
+    width: 100%; /* This will push the sidebar to the end */
+    padding: 2rem; /* Added padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 5px; /* Rounded corners for the form container */
+    background: #fff; /* White background */
+    margin-right: 2rem; /* Space between form and sidebar */
+  }
+  
+  .logoCircle {
+    background-color: #c0c0c0;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    font-size: 2rem;
+    margin-bottom: 65px;
+  }
+    
+  /* Input group styling */
+.inputGroup {
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  /* Label styling */
+  .inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600; /* Make the labels slightly bolder */
+    color: #333; /* Dark gray color for better readability */
+  }
+  
+  /* Input and button styling */
+  .inputGroup input, .userInfoForm button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Slightly rounded corners for inputs and button */
+    font-size: 1rem; /* Ensures text size is consistent */
+    color: #333; /* Text color for inputs */
+  }
+  
+  .userInfoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* This aligns the button to the right */
+  }
+  /* Button hover effect */
+  .userInfoForm button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+ /* Container for the input fields */
+.inputFieldsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Container for the button */
+/* Container for the button */
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end; /* Aligns the buttons to the right */
+    width: 100%; /* Ensures the container takes up the full width of its parent */
+    margin-top: 1rem; /* Adds space above the buttons */
+  }
+  
+  /* Styles for the buttons */
+  .userInfoForm button {
+    background-color: #007bff; /* Bootstrap blue */
+    padding: 0.5rem 1rem; /* Padding for button size, adjust as necessary */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600; /* Makes the button text slightly bolder */
+    text-align: center; /* Centers the text inside the button */
+    width: auto; /* Adjusts the width to fit the content */
+    margin-left: 0.5rem; /* Adds space between buttons if they are next to each other */
+  }
+  
+  /* Specific styling for the first button if needed */
+  .userInfoForm button:first-child {
+    margin-left: 0; /* No additional space on the left side of the first button */
+    background-color: #ccc; /* Bootstrap blue */
+    padding: 0.5rem 1rem; /* Padding for button size, adjust as necessary */
+    color: rgba(255, 255, 255, 0.563);
+  }
+  
   
   .sidebar {
     width: 250px;
     background: #f3f3f3;
     padding: 1rem;
-    /* Add your own styles */
+    height: 100%; /* Full height */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   }
   
-  
-  .menu {
-    margin-top: 1rem;
-    /* Add your own styles for the menu */
+  /* Adjustments for menu items to differentiate static text from links */
+.menu div {
+    color: #333; /* Color for static text */
+    padding: 0.5rem 0; /* Spacing for static text items */
+    cursor: default;
+    font-weight: 600;
   }
   
   .menu a {
     display: block;
-    margin-bottom: 0.5rem;
-    /* Add your own styles for the menu links */
+    color: #656565; /* Bootstrap blue for links */
+    padding: 0.5rem 0; /* Spacing for link items */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s; /* Transition for link hover effect */
   }
   
-  .mainContent {
-    flex: 1;
-    padding: 1rem;
-  }
-  
-  .inputgroup {
-    margin-bottom: 1rem;
-  }
-  
-  .inputgroup label {
-    display: block;
-    margin-bottom: 0.5rem;
-    /* Add your own styles for the label */
-  }
-  
-  .inputgroup input {
-    width: 100%;
-    padding: 0.5rem;
-    /* Add your own styles for the input */
+  .menu a:hover {
+    color: #000000; /* Darker blue on hover for links */
   }
   
   .footer {
     background: #f1f1f1;
     padding: 1rem;
     text-align: center;
-    /* Add your own styles */
   }
   
