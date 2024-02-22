@@ -1,0 +1,27 @@
+.footer {
+    background-color: #f5f5f5; /* 상단 푸터의 배경색 */
+    color: #333; /* 글자 색상 */
+    display: flex;
+    justify-content: space-between; /* 로고와 'About Us'를 양 끝으로 정렬 */
+    align-items: center;
+    padding: 20px 50px; /* 패딩 값 */
+    box-sizing: border-box;
+    border-top: 1px solid #dcdcdc; /* 상단 테두리 스타일 */
+  }
+  
+  .logo {
+    font-size: 1.5em; /* 로고 폰트 사이즈 */
+    font-weight: bold; /* 로고 폰트 두께 */
+  }
+  
+  .about {
+    text-decoration: none; /* 'About Us' 링크 밑줄 제거 */
+    color: #333; /* 'About Us' 글자 색상 */
+    font-weight: bold; /* 'About Us' 폰트 두께 */
+  }
+  
+  /* 'About Us' 링크에 호버 시 스타일 */
+  .about:hover {
+    text-decoration: underline;
+  }
+  

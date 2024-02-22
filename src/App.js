@@ -1,45 +1,49 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import "./App.css";
-import RootPage from "./pages/Root";
-import HomePage from "./pages/Home";
-import LoginPage from "./pages/Login";
-import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
-import { defaultLoader } from "./util/auth";
-import Write from "./components/write";
+import RootPage from './pages/Root';
+import HomePage from './pages/Home';
+import LoginPage from './pages/Login';
+import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
+import { defaultLoader } from './util/auth';
+import Write from './components/write';
+import MainPage from './components/MainPage';
 
+// Create a query client instance
 const queryClient = new QueryClient();
+
+// Create a router instance
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootPage />,
     id: "root",
     loader: defaultLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
-        path: "/login",
+        path: '/login',
         element: <LoginPage />,
       },
       {
-        // 이 라우터 보호할 방법을 찾아야한다
-        path: "/login/token",
-        id: "kakao-token",
+        path: '/login/token',
         element: <KakaoTokenPage />,
         loader: tokenLoader,
       },
       {
-        path: "/write",
-        element: <Write />,
+        path: '/write',
+        element: <Write />
       },
+      // Add more routes as needed
+      {
+        path: "mainpage",
+        element: <MainPage />
+      }
     ],
   },
+  // Add more route objects as needed
 ]);
 
 function App() {
