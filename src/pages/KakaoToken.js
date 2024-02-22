@@ -22,7 +22,7 @@ const KakaoTokenPage = () => {
       } = returnData;
       // 위애서 받은 데이터들을 리덕스의 유저 객체에 던져준다.
       dispatch(userAction.loginUserData({ user }));
-      dispatch(userAction.replaceToken({ access }));
+      // dispatch(userAction.replaceToken({ access }));
 
       navigate("/");
     } else {
@@ -42,6 +42,7 @@ export default KakaoTokenPage;
 export async function loader({ request, params }) {
   const token = getKakaoToken();
   // 여기서 백엔드에게 토큰을 넘겨주면 결과 값은 엑세스 토큰이랑 리프레시 토큰이랑 유저 데이터가 넘어올까?
+  // return { leein: "perfect!" };
   return defer({
     okay: await sendKaKaoToken(token),
   });
