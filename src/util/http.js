@@ -17,7 +17,6 @@ export const privateApi = axios.create({
 
 //리프레시토큰 요청 api
 function postRefreshToken() {
-  // 여기서 url을 변경해줘야 한다.
   const response = publicApi.post("accounts/token/refresh/", {
     refresh: localStorage.getItem("refresh_token"),
   });
@@ -45,31 +44,31 @@ privateApi.interceptors.response.use(
     } = error;
 
     if (status === 401) {
-      if (error.response.data.message === "Unauthorized") {
+      try {
+        console.log("401 : 자 드가자~");
         const originRequest = config;
-        try {
-          const tokenResponse = await postRefreshToken();
-          if (tokenResponse.status === 201) {
-            const { access, refresh } = tokenResponse.data;
-            localStorage.setItem("access_token", access);
-            localStorage.setItem("refresh_token", refresh);
-            axios.defaults.headers.common.Authorization = `Bearer ${access}`;
-            originRequest.headers.Authorization = `Bearer ${access}`;
-            return axios(originRequest);
-          }
-        } catch (error) {
-          if (axios.isAxiosError(error)) {
-            if (
-              error.response?.status === 404 ||
-              error.response?.status === 422
-            ) {
-              // 여기
-              // alert(LOGIN.MESSAGE.EXPIRED);
-              // window.location.replace("/login");
-            } else {
-              // alert(LOGIN.MESSAGE.ETC);
-              // window.location.replace("/login");
-            }
+        const tokenResponse = await postRefreshToken();
+        if (tokenResponse.status === 200) {
+          const { access, refresh } = tokenResponse.data;
+          console.log("access, refresh :", access, refresh);
+          localStorage.setItem("access_token", access);
+          localStorage.setItem("refresh_token", refresh);
+          axios.defaults.headers.common.Authorization = `Bearer ${access}`;
+          originRequest.headers.Authorization = `Bearer ${access}`;
+          return axios(originRequest);
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          if (
+            error.response?.status === 404 ||
+            error.response?.status === 422
+          ) {
+            // 여기
+            // alert(LOGIN.MESSAGE.EXPIRED);
+            // window.location.replace("/login");
+          } else {
+            // alert(LOGIN.MESSAGE.ETC);
+            // window.location.replace("/login");
           }
         }
       }

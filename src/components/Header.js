@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { userAction } from "../store/user-slice";
 import { Link } from "react-router-dom";
-import { logoutToken } from "../util/auth";
+import { privateApi } from "../util/http";
+// import { logoutToken } from "../util/auth";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +13,9 @@ const Header = (props) => {
   const handleLogout = async () => {
     // 토큰 삭제하기
     try {
-      const response = await logoutToken();
+      const response = await privateApi.post("accounts/token/logout/", {
+        refresh: localStorage.removeItem("refresh_token"),
+      });
       if (response) {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
@@ -22,7 +25,17 @@ const Header = (props) => {
         // 로그아웃이 안됨
       }
     } catch (error) {
-      // 로그아웃이 안됨
+      // console.log(
+      //   "error :",
+      //   error.response.status,
+      //   typeof error.response.status
+      // );
+      if (error.response.status === 401) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user");
+        dispatch(userAction.logoutUsrData());
+      }
     }
   };
 
