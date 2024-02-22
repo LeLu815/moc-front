@@ -43,6 +43,12 @@ const PostPage = () => {
                 <input type="text" placeholder="댓글을 작성하세요" />
                 <button>댓글 작성</button>
             </div>
+            <footer className={classes.footer}>
+                <p>&copy; 2024 MoC. All Rights Reserved.</p>
+                <p>
+                    <a href="/about-us">About Us</a>
+                </p>
+            </footer>
         </div>
     );
 };
