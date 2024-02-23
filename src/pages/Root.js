@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 // import { useQuery } from "@tanstack/react-query";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { userAction } from "../store/user-slice";
 
 const RootPage = () => {
@@ -25,9 +26,12 @@ const RootPage = () => {
   return (
     <>
       <Header />
-      <main>
+      <main
+        style={{ paddingTop: "9rem", maxWidth: "1140px", margin: "0 auto" }}
+      >
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 };
