@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import RootPage from "./pages/Root";
 import HomePage, { loader as homeLoader } from "./pages/Home";
 import LoginPage from "./pages/Login";
+import SearchPage from "./pages/Search.js";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
 import Write from "./components/write";
@@ -55,7 +56,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/ErrorPage",
-        element:<ErrorPage/>
+        element:<ErrorPage />
+      },
+      {
+        path: "/SearchPage",
+        element:<SearchPage />
       },
       
     ],
