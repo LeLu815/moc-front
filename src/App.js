@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import RootPage from './pages/Root';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
-import PopularPostsPage from './pages/PopularPosts';
+import PopularPostPage from './pages/PopularPost';
 
 import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
 import { defaultLoader } from './util/auth';
@@ -14,7 +14,6 @@ import Write from './components/write';
 import MainPage from './components/MainPage';
 import MyPage from './components/MyPage';
 import PostPage from './components/PostPage';
-
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -53,8 +52,8 @@ const router = createBrowserRouter([
         element: <PostPage />
       },
       {
-        path: "/PopularPosts",
-        element:<PopularPostsPage/>
+        path: "/PopularPostPage",
+        element:<PopularPostPage/>
       },
       
     ],
