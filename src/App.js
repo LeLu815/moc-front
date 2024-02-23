@@ -1,55 +1,53 @@
-import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import React from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import RootPage from './pages/Root';
-import HomePage from './pages/Home';
-import LoginPage from './pages/Login';
+import RootPage from "./pages/Root";
+import HomePage, { loader as homeLoader } from "./pages/Home";
+import LoginPage from "./pages/Login";
+import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
+import { defaultLoader } from "./util/auth";
+import Write from "./components/write";
+import MainPage from "./components/MainPage";
+import MyPage from "./components/MyPage";
+import PostPage from "./components/PostPage";
 import PopularPostPage from './pages/PopularPost';
 import ErrorPage from './pages/Error';
-import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
-import { defaultLoader } from './util/auth';
-import Write from './components/write';
-import MainPage from './components/MainPage';
-import MyPage from './components/MyPage';
-import PostPage from './components/PostPage';
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootPage />,
     id: "root",
     loader: defaultLoader,
     children: [
-      { index: true, 
-        element: <HomePage /> },
+      { index: true, element: <HomePage />, loader: homeLoader },
       {
-        path: '/login',
+        path: "/login",
         element: <LoginPage />,
       },
       {
-        path: '/login/token',
+        path: "/login/token",
         element: <KakaoTokenPage />,
         loader: tokenLoader,
       },
       {
-        path: '/write',
-        element: <Write />
+        path: "/write",
+        element: <Write />,
       },
       {
         path: "/Mainpage",
-        element: <MainPage />
+        element: <MainPage />,
       },
       {
         path: "/Mypage",
-        element: <MyPage />
-      }
-      ,
+        element: <MyPage />,
+      },
       {
         path: "/PostPage",
-        element: <PostPage />
+        element: <PostPage />,
       },
       {
         path: "/PopularPostPage",

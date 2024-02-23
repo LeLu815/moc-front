@@ -5,6 +5,7 @@ a {
 
 .container {
   width: 100%;
+  min-width: 500px;
   position: fixed;
   padding: 1.6rem 5rem;
   background-color: #fff;
