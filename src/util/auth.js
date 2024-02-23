@@ -1,8 +1,8 @@
 import { redirect } from "react-router-dom";
 
 export function getAuthToken() {
-  const token = sessionStorage.getItem("token");
-  const refresh = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
+  const refresh = localStorage.getItem("refresh_token");
   if (!token && !refresh) {
     return { accese: null, refresh: null };
   }
@@ -36,3 +36,16 @@ export function checkAuthLoader() {
 
   return null;
 }
+
+// export const logoutToken = async () => {
+//   try {
+//     const response = await fetch(
+//       `${process.env.REACT_APP_SERVER_IP}accounts/token/logout/`
+//     );
+//     if (response.ok) {
+//       return true;
+//     }
+//   } catch (error) {
+//     return false;
+//   }
+// };

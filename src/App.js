@@ -13,10 +13,7 @@ import MainPage from './components/MainPage';
 import MyPage from './components/MyPage';
 import PostPage from './components/PostPage';
 
-// Create a query client instance
-const queryClient = new QueryClient();
-
-// Create a router instance
+export const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
