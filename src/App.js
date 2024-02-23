@@ -7,7 +7,7 @@ import RootPage from './pages/Root';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import PopularPostPage from './pages/PopularPost';
-
+import ErrorPage from './pages/Error';
 import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
 import { defaultLoader } from './util/auth';
 import Write from './components/write';
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/PopularPostPage",
         element:<PopularPostPage/>
+      },
+      {
+        path: "/ErrorPage",
+        element:<ErrorPage/>
       },
       
     ],

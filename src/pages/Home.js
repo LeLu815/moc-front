@@ -18,6 +18,7 @@ const HomePage = () => {
       <Link to="/MyPage">   개인 정보 확인하기   </Link>
       <Link to="/PostPage"> 작성된 게시글의 제목입니다. </Link>
       <Link to="/PopularPostPage">View Popular Posts</Link>
+      <Link to="/ErrorPage">에러 페이지 </Link>
     </>
   );
 };
