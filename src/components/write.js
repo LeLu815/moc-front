@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './write.module.css';
 import WritingArea from './WritingArea.js';
-import Advertisement from './Advertisement';
+import Advertisement from './Advertisement.js';
 import Footer from './Footer';
 
 const Write = () => {

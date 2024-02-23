@@ -12,6 +12,8 @@ import Write from "./components/write";
 import MainPage from "./components/MainPage";
 import MyPage from "./components/MyPage";
 import PostPage from "./components/PostPage";
+import PopularPostPage from './pages/PopularPost';
+import ErrorPage from './pages/Error';
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -47,6 +49,15 @@ const router = createBrowserRouter([
         path: "/PostPage",
         element: <PostPage />,
       },
+      {
+        path: "/PopularPostPage",
+        element:<PopularPostPage/>
+      },
+      {
+        path: "/ErrorPage",
+        element:<ErrorPage/>
+      },
+      
     ],
   },
 ]);

@@ -1,0 +1,6 @@
+/* src/components/PopularPosts/PopularPostsList.module.css */
+.list {
+    display: flex;
+    flex-direction: column;
+  }
+  
