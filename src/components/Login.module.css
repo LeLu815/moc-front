@@ -1,0 +1,37 @@
+.loginPage {
+    height: 100vh;
+    background-image: url('./Home\ page.png'); /* Update with the correct path to your PNG background */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logoContainer img {
+    /* Size as needed */
+    width: 200px; /* Example size - adjust as needed */
+    margin-bottom: 20px;
+  }
+  
+  .sloganContainer h1 {
+    color: #000; /* Adjust color as needed */
+    margin-bottom: 10px;
+    /* Add more styling for h1 */
+  }
+  
+  .sloganContainer h2 {
+    color: #333; /* Adjust color as needed */
+    margin-bottom: 8px;
+    /* Add more styling for h2 */
+  }
+  
+  .sloganContainer p {
+    color: #666; /* Adjust color as needed */
+    margin-bottom: 5px;
+    /* Add more styling for p */
+  }
+  
+
+  

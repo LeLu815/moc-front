@@ -1,0 +1,32 @@
+/* src/components/PopularPosts/PopularPostItem.module.css */
+.item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .title {
+    margin: 0 0 8px 0;
+    color: #333;
+  }
+  
+  .excerpt {
+    margin: 0;
+    color: #666;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+  }
+  
+  .likes, .comments {
+    color: #888;
+  }
+  
+  .date {
+    text-align: right;
+    color: #aaa;
+  }
+  

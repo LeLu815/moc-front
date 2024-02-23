@@ -1,0 +1,52 @@
+.errorPage {
+    width: 100%;
+    height: 100vh;
+    font-weight: bold;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .errorPage h1{
+    color:#3494C9;
+    font-weight: bolder;
+  }
+  .errorMessage h1{
+    font-weight: bolder;
+  }
+ 
+  .questionMark {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+.subMessage{
+    color:#5F6D7E;
+    font-weight: bold;
+}
+.homeButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #2B8DD8, #1AA7EC); /* Adjust the colors to match your image */
+    border: none; /* Remove the border */
+    border-radius: 20px; /* Rounded corners */
+    color: #fff;
+    font-size: 1rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25); /* Optional: text shadow for better readability */
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
+    outline: none; /* Remove the outline to maintain the style on focus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow to lift the button off the page */
+    transition: all 0.3s ease; /* Smooth transition for button interactions */
+  }
+  
+  .homeButton:hover {
+    background: linear-gradient(to right, #1A85BE, #168CD0); /* Slightly darker gradient for hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow for hover effect */
+  }
+  
+  .homeButton:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow to give a pressed effect */
+  }
