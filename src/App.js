@@ -1,42 +1,53 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import "./App.css";
-import RootPage from "./pages/Root";
-import HomePage from "./pages/Home";
-import LoginPage from "./pages/Login";
-import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
-import { defaultLoader } from "./util/auth";
-import Write from "./components/write";
+import RootPage from './pages/Root';
+import HomePage from './pages/Home';
+import LoginPage from './pages/Login';
+import KakaoTokenPage, { loader as tokenLoader } from './pages/KakaoToken';
+import { defaultLoader } from './util/auth';
+import Write from './components/write';
+import MainPage from './components/MainPage';
+import MyPage from './components/MyPage';
+import PostPage from './components/PostPage';
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootPage />,
     id: "root",
     loader: defaultLoader,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, 
+        element: <HomePage /> },
       {
-        path: "/login",
+        path: '/login',
         element: <LoginPage />,
       },
       {
-        // 이 라우터 보호할 방법을 찾아야한다
-        path: "/login/token",
-        id: "kakao-token",
+        path: '/login/token',
         element: <KakaoTokenPage />,
         loader: tokenLoader,
       },
       {
-        path: "/write",
-        element: <Write />,
+        path: '/write',
+        element: <Write />
+      },
+      {
+        path: "/Mainpage",
+        element: <MainPage />
+      },
+      {
+        path: "/Mypage",
+        element: <MyPage />
+      }
+      ,
+      {
+        path: "/PostPage",
+        element: <PostPage />
       },
     ],
   },

@@ -1,0 +1,87 @@
+.mainPage {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+}
+.contentWrapper {
+    flex: 1; /* 내용이 적을 경우 footer를 아래로 밀어내기 위해 사용 */
+    overflow: auto; /* 필요한 경우 스크롤 허용 */
+}
+
+/* Adjusted the styling of h1 to match the font size and weight from the image */
+.mainPage h1 {
+    font-size: 36px; /* Adjusted the font size to match the image */
+    font-weight: bold; /* Make the font bold */
+    color: #333; 
+    margin-bottom: 20px; /* Add some margin below the heading */
+    text-align: center;
+    margin-top: 40px; /* Added margin at the top to push content down */
+}
+
+.sectionsContainer {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-gap: 20px; /* Space between the columns */
+    margin-top: 20px; /* Additional top margin */
+}
+
+.section {
+    border: 1px solid #ccc; /* Border to match the image */
+    padding: 20px; /* Padding inside each section */
+    border-radius: 4px; /* Slight rounding of corners to match the image */
+}
+
+/* Adjust the style of the news items */
+.newsItem {
+    background-color: #f8f8f8; /* Lighter background color */
+    border-bottom: 1px solid #eaeaea; /* Lighter border color */
+    padding: 10px 20px; /* Adjust padding to match the image */
+    margin-bottom: 10px; /* Space between news items */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.newsItem:hover {
+    background-color: #e9ecef; /* Slightly darker background on hover */
+}
+
+/* Style for the search bar, adjust as needed */
+.searchBarContainer {
+    display: flex;
+    justify-content: center; /* Center the search bar container */
+    margin: 40px 0; /* Space above and below the search bar */
+}
+
+.searchBar input[type="text"] {
+    width: 100%; /* Full width */
+    padding: 10px;
+    border: 1px solid #ccc; /* Match the border of the sections */
+    border-radius: 4px; /* Rounded corners */
+    margin-right: 10px; /* Space between input and button */
+}
+
+.searchBar button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+}
+.contentWrapper {
+    flex: 1; /* This will make the content grow and push the footer */
+    overflow: auto; /* Add scroll to the content wrapper if needed */
+}
+
+
+/* Responsive design adjustments */
+@media (max-width: 768px)
+ {
+    .sectionsContainer {
+        grid-template-columns: 1fr; /* Stack sections on smaller screens */
+    }
+}
