@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  useNavigate,
-  defer,
-  useRouteLoaderData,
-  redirect,
-} from "react-router-dom";
+import { useNavigate, defer, useRouteLoaderData } from "react-router-dom";
 import { privateApi } from "../util/http.js";
 
 import classes from "./write.module.css";
@@ -25,7 +20,7 @@ const Write = () => {
     <div className={classes.container}>
       <div className={classes.writeContainer}>
         <h1 className={classes.title}>글쓰기</h1>
-        <WritingArea method="post" />
+        <WritingArea method="POST" />
       </div>
     </div>
   );
@@ -55,16 +50,3 @@ export const loader = () => {
     });
   }
 };
-
-export async function action({ params, request }) {
-  const data = await request.formData();
-
-  const eventData = {
-    title: data.get("title"),
-    body: data.get("body"),
-    cateId: data.get("cateId"),
-  };
-  console.log("eventData :", params, request, data);
-
-  return redirect("/");
-}

@@ -2,28 +2,28 @@ import styles from "./Clock.module.css";
 
 const Clock = () => {
   return (
-    <div class={styles.card}>
-      <div class={styles.numbers}>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
-        <span class={styles.number}></span>
+    <div className={styles.card}>
+      <div className={styles.numbers}>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
+        <span className={styles.number}></span>
       </div>
-      <div class={styles.needles}>
-        <span class={styles.h}></span>
-        <span class={styles.m}></span>
-        <span class={styles.s}></span>
-        <span class={styles.center}></span>
+      <div className={styles.needles}>
+        <span className={styles.h}></span>
+        <span className={styles.m}></span>
+        <span className={styles.s}></span>
+        <span className={styles.center}></span>
       </div>
-      <div class={styles.pie}></div>
+      <div className={styles.pie}></div>
     </div>
   );
 };
