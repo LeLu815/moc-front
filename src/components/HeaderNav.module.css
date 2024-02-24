@@ -7,7 +7,7 @@
 }
 .li {
   color: #222;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.2rem;
 }
 .li:hover {
@@ -18,4 +18,8 @@
   .container {
     display: none;
   }
+}
+
+.active {
+  font-weight: 900;
 }

@@ -34,6 +34,11 @@ const Header = (props) => {
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("user");
         dispatch(userAction.logoutUsrData());
+      } else if (error.response.status === 400) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user");
+        dispatch(userAction.logoutUsrData());
       }
     }
   };
@@ -46,7 +51,12 @@ const Header = (props) => {
         </Link>
         {location.pathname.indexOf("/login") === -1 && <HeaderNav />}
         <div className={styles.info_div}>
-          <button className={`${styles.button_login}`} onClick={() => {}}>
+          <button
+            className={`${styles.button_login}`}
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
             글쓰기
           </button>
           {!isLoggedIn && (
