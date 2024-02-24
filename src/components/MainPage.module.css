@@ -70,6 +70,8 @@
 }
 /* Adjust the style of the news items */
 .newsItem {
+  display: flex;
+  justify-content: space-between;
   /* background-color: #f8f8f8;  */
   /* border-bottom: 1px solid #eaeaea;  */
   /* padding: 10px 20px;  */

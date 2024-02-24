@@ -8,12 +8,15 @@ import HomePage, { loader as homeLoader } from "./pages/Home";
 import LoginPage from "./pages/Login";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
-import Write from "./components/write";
+import Write, {
+  loader as writeLoader,
+  action as writeAction,
+} from "./components/write";
 import MainPage from "./components/MainPage";
 import MyPage from "./components/MyPage";
 import PostPage from "./components/PostPage";
-import PopularPostPage from './pages/PopularPost';
-import ErrorPage from './pages/Error';
+import PopularPostPage from "./pages/PopularPost";
+import ErrorPage from "./pages/Error";
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -30,12 +33,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/login/token",
+        id: "token",
         element: <KakaoTokenPage />,
         loader: tokenLoader,
       },
       {
         path: "/write",
         element: <Write />,
+        id: "write",
+        loader: writeLoader,
+        action: writeAction,
       },
       {
         path: "/Mainpage",
@@ -51,13 +58,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/PopularPostPage",
-        element:<PopularPostPage/>
+        element: <PopularPostPage />,
       },
       {
         path: "/ErrorPage",
-        element:<ErrorPage/>
+        element: <ErrorPage />,
       },
-      
     ],
   },
 ]);

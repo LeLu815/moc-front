@@ -36,16 +36,3 @@ export function checkAuthLoader() {
 
   return null;
 }
-
-// export const logoutToken = async () => {
-//   try {
-//     const response = await fetch(
-//       `${process.env.REACT_APP_SERVER_IP}accounts/token/logout/`
-//     );
-//     if (response.ok) {
-//       return true;
-//     }
-//   } catch (error) {
-//     return false;
-//   }
-// };

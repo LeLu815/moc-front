@@ -25,11 +25,11 @@ const HeaderNav = () => {
       </li>
       <li className={styles.li}>
         <NavLink
-          to="/interest"
+          to="/current"
           className={({ isActive }) => (isActive ? styles.active : undefined)}
           end
         >
-          관심글
+          최신글
         </NavLink>
       </li>
     </ul>

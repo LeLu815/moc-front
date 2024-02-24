@@ -1,5 +1,4 @@
-// import { useNavigate } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
 import { Await, defer, json, useLoaderData } from "react-router-dom";
 import { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -20,21 +19,14 @@ import Clock from "../components/Clock";
 
 const HomePage = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const popularPosts = ["인기 게시글 1", "인기 게시글 2", "인기 게시글 3"];
-  const interestedPosts = ["관심 게시글 1", "관심 게시글 2", "관심 게시글 3"];
-  const recentPosts = ["최신 게시글 1", "최신 게시글 2", "최신 게시글 3"];
-  const hashtags = [
-    "#해시태그1 게시판",
-    "#해시태그2 게시판",
-    "#해시태그3 게시판",
-    "#해시태그4 게시판",
-  ];
+  const navitate = useNavigate();
+  const { popular, recent } = useLoaderData();
+
+  const hashtags = ["공부", "운동", "부동산", "주식/투자", "여행"];
 
   return (
     <div className={classes.mainPage}>
       <SearchBar />
-      {/* <div className={classes.title}>오늘 아껴볼 시간은?</div> */}
-      {/* Content wrapper added to ensure content pushes footer down */}
       <div className={classes.contentWrapper}>
         <div className={classes.sectionsContainer}>
           <div className={classes.section}>
@@ -48,18 +40,39 @@ const HomePage = () => {
               </span>
               <span className={classes.see_more}>더보기</span>
             </div>
-            {popularPosts.map((post, index) => (
-              <NewsItem key={index} title={post} />
-            ))}
+            <Suspense
+              fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
+            >
+              <Await resolve={popular}>
+                {(loadedEvents) => {
+                  return loadedEvents
+                    .slice(0, 6)
+                    .map((event) => (
+                      <NewsItem
+                        key={event.id}
+                        title={event.title}
+                        date={event.created_at}
+                      />
+                    ));
+                }}
+              </Await>
+            </Suspense>
           </div>
           <div className={classes.section_clock}>
-            <div class={styles.card}>
-              <div class={styles["card-details"]}>
-                <div class={styles["text-title"]}>Save</div>
-                <div class={styles["text-title"]}>Your</div>
-                <div class={styles["text-title"]}>Time</div>
+            <div className={styles.card}>
+              <div className={styles["card-details"]}>
+                <div className={styles["text-title"]}>Save</div>
+                <div className={styles["text-title"]}>Your</div>
+                <div className={styles["text-title"]}>Time</div>
               </div>
-              <button class={styles["card-button"]}>Get start</button>
+              <button
+                className={styles["card-button"]}
+                onClick={() => {
+                  navitate("/login");
+                }}
+              >
+                Get start
+              </button>
               <Clock />
             </div>
           </div>
@@ -74,9 +87,23 @@ const HomePage = () => {
               </span>
               <span className={classes.see_more}>더보기</span>
             </div>
-            {recentPosts.map((post, index) => (
-              <NewsItem key={index} title={post} />
-            ))}
+            <Suspense
+              fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
+            >
+              <Await resolve={recent}>
+                {(loadedEvents) => {
+                  return loadedEvents
+                    .slice(0, 5)
+                    .map((event) => (
+                      <NewsItem
+                        key={event.id}
+                        title={event.title}
+                        date={event.created_at}
+                      />
+                    ));
+                }}
+              </Await>
+            </Suspense>
           </div>
           <div className={classes.section}>
             <div className={classes.section_header}>
@@ -99,28 +126,19 @@ const HomePage = () => {
       </div>
     </div>
   );
-  // return (
-  //   <>
-  //     {/* <p>여기는 Moc 페이지 입니다.</p>
-  //     {isLoggedIn && <MyInput />}
-  //     <Link to="/write">write 페이지 가기!</Link>
-  //     <Link to="/MainPage"> main page 로 이동하기</Link>
-  //     <Link to="/MyPage"> 개인 정보 확인하기 </Link>
-  //     <Link to="/PostPage"> 작성된 게시글의 제목입니다. </Link> */}
-
-  //   </>
-  // );
 };
 
 export default HomePage;
 
 async function getPopularContents() {
-  const response = await publicApi.get("posts/popular/yesterday/");
-  return response.data;
+  const response = await publicApi.get("posts/list/1/");
+  console.log("getPopularContents :", response.data.postList);
+  return response.data.postList;
 }
 async function getRecentContent() {
-  const response = await publicApi.get("posts/like/0/");
-  return response.postList;
+  const response = await publicApi.get("posts/list/0/");
+  console.log("getRecentContent :", response.data.postList);
+  return response.data.postList;
 }
 
 export const loader = () => {
