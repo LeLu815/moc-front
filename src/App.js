@@ -9,10 +9,8 @@ import LoginPage from "./pages/Login";
 import SearchPage from "./pages/Search.js";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
-import Write, {
-  loader as writeLoader,
-  action as writeAction,
-} from "./components/write";
+import Write, { loader as writeLoader } from "./components/write";
+import { action as writeAction } from "./components/WritingArea";
 import MainPage from "./components/MainPage";
 import MyPage from "./components/MyPage";
 import PostPage from "./components/PostPage";

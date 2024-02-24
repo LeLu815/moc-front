@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./write.module.css";
 import { useState } from "react";
-import { useNavigate, useActionData, Form } from "react-router-dom";
+import { useNavigate, useActionData, Form, redirect } from "react-router-dom";
+
+import { privateApi } from "../util/http";
 
 const cateNameObj = {
   0: "꽝!",
@@ -24,9 +26,17 @@ const WritingArea = ({ method, event }) => {
   const navigate = useNavigate();
   const data = useActionData();
   const [cateNum, setCateNum] = useState("");
+  const [cateString, setCateString] = useState("");
+  const [switchTo, setSwitchTo] = useState(true);
   const handleClick = (num) => {
     setCateNum((prevNum) => {
       if (prevNum.length < 2) {
+        const result = `${prevNum}` + `${num}`;
+        if (+result <= 13) {
+          setCateString(cateNameObj[+result]);
+        } else {
+          setCateString("초과!");
+        }
         return `${prevNum}` + `${num}`;
       }
       return prevNum;
@@ -34,19 +44,11 @@ const WritingArea = ({ method, event }) => {
   };
   const handleDelete = () => {
     setCateNum("");
+    setCateString("");
+    setSwitchTo(true);
   };
   const onChangeToText = () => {
-    setCateNum((prevNum) => {
-      const toNum = +prevNum;
-      console.log(toNum, Boolean(toNum));
-      if (!Boolean(toNum)) {
-        return prevNum;
-      } else if (toNum > 13) {
-        return "초과";
-      } else {
-        return cateNameObj[`${toNum}`];
-      }
-    });
+    setSwitchTo((boolean) => !boolean);
   };
 
   return (
@@ -55,6 +57,7 @@ const WritingArea = ({ method, event }) => {
         <input
           className={classes.titleInput}
           id="title"
+          name="title"
           type="text"
           placeholder="제목"
           required
@@ -63,6 +66,7 @@ const WritingArea = ({ method, event }) => {
         <input
           className={classes.contentInput}
           id="body"
+          name="body"
           placeholder="내용을 입력하세요."
           type="text"
           required
@@ -86,19 +90,21 @@ const WritingArea = ({ method, event }) => {
         </div>
       </div>
       <div>
-        <h2>카테고리 설정</h2>
-        <div class={classes.calculator}>
-          <div class={classes.output}>
+        <div className={classes.cate_name}>카테고리 설정</div>
+        <div className={classes.calculator}>
+          <div className={classes.output}>
             <input
-              id="cateId"
-              class={classes.result}
-              value={cateNum}
+              id="cateId_show"
+              className={classes.result}
+              value={switchTo ? cateNum : cateString}
               required
               defaultValue={event ? cateNameObj[`${event.cateId}`] : ""}
             />
+            <input value={cateNum} id="cateId" name="cateId" type="hidden" />
           </div>
-          <div class={classes.buttons}>
+          <div className={classes.buttons}>
             <button
+              type="button"
               onClick={() => {
                 handleClick("1");
               }}
@@ -106,6 +112,7 @@ const WritingArea = ({ method, event }) => {
               1
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("2");
               }}
@@ -113,6 +120,7 @@ const WritingArea = ({ method, event }) => {
               2
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("3");
               }}
@@ -120,6 +128,7 @@ const WritingArea = ({ method, event }) => {
               3
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("4");
               }}
@@ -127,6 +136,7 @@ const WritingArea = ({ method, event }) => {
               4
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("5");
               }}
@@ -134,6 +144,7 @@ const WritingArea = ({ method, event }) => {
               5
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("6");
               }}
@@ -141,6 +152,7 @@ const WritingArea = ({ method, event }) => {
               6
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("7");
               }}
@@ -148,6 +160,7 @@ const WritingArea = ({ method, event }) => {
               7
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("8");
               }}
@@ -155,30 +168,88 @@ const WritingArea = ({ method, event }) => {
               8
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("9");
               }}
             >
               9
             </button>
-            <button class={classes["bg-red"]} onClick={handleDelete}>
+            <button
+              className={classes["bg-red"]}
+              onClick={handleDelete}
+              type="button"
+            >
               C
             </button>
             <button
+              type="button"
               onClick={() => {
                 handleClick("0");
               }}
             >
               0
             </button>
-            <button class={classes["bg-green"]} onClick={onChangeToText}>
+            <button
+              className={classes["bg-green"]}
+              onClick={onChangeToText}
+              type="button"
+            >
               =
             </button>
           </div>
         </div>
+        <div className={classes.hash_title}>해시태그</div>
+        <input
+          type="text"
+          name="hash"
+          id="hash"
+          className={classes.input_hash}
+          placeholder="해시태그 ,(쉼표)로 구분해서 작성해주세요!"
+          maxLength="40"
+          required
+        />
       </div>
     </Form>
   );
 };
 
 export default WritingArea;
+
+export async function action({ request, params }) {
+  const data = await request.formData();
+  const hash_string = data
+    .get("hash")
+    .split(",")
+    .map((value) => {
+      const newValue = value.trim().replace(/ /g, "");
+      if (newValue.indexOf("#") === -1) {
+        return `#${newValue}`;
+      } else {
+        return "#" + newValue.split("#").join("");
+      }
+    })
+    .join(" ");
+
+  const eventData = {
+    title: data.get("title"),
+    body: data.get("body"),
+    cateId: data.get("cateId"),
+    like_cnt: 0,
+    located: false,
+    hash: hash_string,
+  };
+  const cateId = parseInt(data.get("cateId"));
+
+  // 통신에 오류가 생겼을 때의 대처
+  try {
+    const response = await privateApi.post(
+      `posts/create/${cateId}/`,
+      eventData
+    );
+    if (!response.ok) {
+    }
+  } catch (error) {}
+
+  return redirect("/");
+}

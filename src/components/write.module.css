@@ -14,7 +14,7 @@
 }
 
 .title {
-  font-size: 25px;
+  font-size: 1.8rem;
   font-weight: bolder;
   margin-bottom: 20px;
   margin-left: 20px;
@@ -25,7 +25,7 @@
   display: flex;
   justify-content: space-around;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 3rem 0 4rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -248,4 +248,31 @@ button:active {
 .bg-red:hover {
   background-color: rgba(255, 1, 1, 0.651);
   color: white;
+}
+
+.input_hash {
+  width: 17rem;
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow: 10px 10px 20px #c5c5c5, -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+
+.input_hash:focus {
+  outline-color: #e8e8e8;
+  background: #e8e8e8;
+  box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+
+.hash_title {
+  margin-top: 2rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+.cate_name {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
 }
