@@ -23,6 +23,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootPage />,
     id: "root",
+    errorElement: <ErrorPage />,
     loader: defaultLoader,
     children: [
       { index: true, element: <HomePage />, loader: homeLoader },
@@ -61,11 +62,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/ErrorPage",
-        element:<ErrorPage />
+        element: <ErrorPage />,
       },
       {
         path: "/SearchPage",
-        element:<SearchPage />
+        element: <SearchPage />,
       },
     ],
   },
