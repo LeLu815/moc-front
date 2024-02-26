@@ -25,6 +25,7 @@ const Header = (props) => {
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("user");
         dispatch(userAction.logoutUsrData());
+        navigate("/login");
       } else {
         // 로그아웃이 안됨
       }
@@ -33,12 +34,14 @@ const Header = (props) => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("user");
+        navigate("/login");
         dispatch(userAction.logoutUsrData());
       } else if (error.response.status === 400) {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("user");
         dispatch(userAction.logoutUsrData());
+        navigate("/login");
       }
     }
   };

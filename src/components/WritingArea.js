@@ -1,7 +1,12 @@
-import React from "react";
 import classes from "./write.module.css";
 import { useState } from "react";
-import { useNavigate, useActionData, Form, redirect } from "react-router-dom";
+import {
+  useNavigate,
+  useActionData,
+  Form,
+  redirect,
+  json,
+} from "react-router-dom";
 
 import { privateApi } from "../util/http";
 
@@ -22,20 +27,26 @@ const cateNameObj = {
   13: "음악",
 };
 
+// event는 edit 페이지에서 로더함수로 불러와서 데이터를 넣어줄 때 쓰게된다.
 const WritingArea = ({ method, event }) => {
   const navigate = useNavigate();
-  const data = useActionData();
   const [cateNum, setCateNum] = useState("");
   const [cateString, setCateString] = useState("");
   const [switchTo, setSwitchTo] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  const [onClose, setOnClose] = useState(false);
+  const data = useActionData();
+
   const handleClick = (num) => {
     setCateNum((prevNum) => {
       if (prevNum.length < 2) {
         const result = `${prevNum}` + `${num}`;
         if (+result <= 13) {
           setCateString(cateNameObj[+result]);
+          setDisabled(false);
         } else {
           setCateString("초과!");
+          setDisabled(true);
         }
         return `${prevNum}` + `${num}`;
       }
@@ -46,13 +57,37 @@ const WritingArea = ({ method, event }) => {
     setCateNum("");
     setCateString("");
     setSwitchTo(true);
+    setDisabled(false);
   };
   const onChangeToText = () => {
     setSwitchTo((boolean) => !boolean);
   };
-
   return (
     <Form method={method} className={classes.writingArea}>
+      {data && data.name === "AxiosError" && (
+        <div
+          className={`${classes.error_container} ${
+            onClose ? classes.display_none : ""
+          }`}
+        >
+          <div className={classes.error_card}>
+            <div className={classes.error_info}>
+              <span className={classes.error_title}>게시글 오류</span>
+              <span className={classes.error_en}>{data.message}</span>
+              <span className={classes.error_kor}>다시 시도해주세요!</span>
+            </div>
+            <button
+              type="button"
+              className={classes.error_btn}
+              onClick={() => {
+                setOnClose(true);
+              }}
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      )}
       <div>
         <input
           className={classes.titleInput}
@@ -84,6 +119,10 @@ const WritingArea = ({ method, event }) => {
           <button
             type="submit"
             className={`${classes.button} ${classes.red_btn}`}
+            disabled={disabled}
+            onClick={() => {
+              setOnClose(false);
+            }}
           >
             업로드
           </button>
@@ -234,22 +273,50 @@ export async function action({ request, params }) {
   const eventData = {
     title: data.get("title"),
     body: data.get("body"),
-    cateId: data.get("cateId"),
     like_cnt: 0,
     located: false,
-    hash: hash_string,
+    hashtags: hash_string,
   };
   const cateId = parseInt(data.get("cateId"));
 
+  const method = request.method;
+
+  // 같은 이벤트 폼 안에서 데이터를 생성하고 수정할 수 있도록 받습니다.
+  let path;
+  if (method === "POST") {
+    path = `posts/create1/${cateId}/`;
+  } else if (method === "PUT") {
+    path = `posts/${cateId}/`;
+  }
+
   // 통신에 오류가 생겼을 때의 대처
   try {
-    const response = await privateApi.post(
-      `posts/create/${cateId}/`,
-      eventData
-    );
-    if (!response.ok) {
+    const response = await privateApi.post(`${path}`, eventData);
+    if (response.status === 404) {
+      console.log("404 :", response);
+      return response;
     }
-  } catch (error) {}
+    return redirect("/PopularPostPage");
+  } catch (error) {
+    console.log(error);
+    if (error.response.status === 422) {
+      console.log("response 422 :", error);
+      return error;
+    }
+    if (error.response.status === 404) {
+      console.log("error 404 : error");
+      return error;
+    }
+    if (error.response.status === 500) {
+      return error;
+    }
+  }
 
-  return redirect("/");
+  // if (!response.ok) {
+  //   throw json(
+  //     { message: "게시물을 작성에 실패했습니다. 다시 시도해주세요" },
+  //     { status: 500 },
+  //     { en_message: "Could not edit event" }
+  //   );
+  // }
 }

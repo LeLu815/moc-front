@@ -21,6 +21,7 @@
 }
 
 .writingArea {
+  position: relative;
   min-width: 700px;
   display: flex;
   justify-content: space-around;
@@ -275,4 +276,55 @@ button:active {
 .cate_name {
   margin-bottom: 0.4rem;
   font-weight: 600;
+}
+
+.error_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+}
+.error_card {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.error_info {
+  display: flex;
+  flex-direction: column;
+}
+.error_title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.7rem;
+}
+.error_en {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+.error_kor {
+  text-align: center;
+}
+.error_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 6rem;
+  border-radius: 0.3rem;
+}
+
+.display_none {
+  display: none;
 }
