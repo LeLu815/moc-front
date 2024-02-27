@@ -1,32 +1,48 @@
 /* src/components/PopularPosts/PopularPostItem.module.css */
 .item {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  
-  .title {
-    margin: 0 0 8px 0;
-    color: #333;
-  }
-  
-  .excerpt {
-    margin: 0;
-    color: #666;
-  }
-  
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px 0;
-  }
-  
-  .likes, .comments {
-    color: #888;
-  }
-  
-  .date {
-    text-align: right;
-    color: #aaa;
-  }
-  
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.item:hover {
+  cursor: pointer;
+}
+.text_section {
+  width: 75%;
+}
+.img {
+  width: 15%;
+  background-color: #e9e9e9;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.excerpt {
+  margin: 0;
+  color: #666;
+}
+.info_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin: 16px 0;
+}
+
+.likes,
+.comments {
+  color: #888;
+}
+
+.date {
+  text-align: right;
+  color: #aaa;
+}

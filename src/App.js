@@ -11,10 +11,9 @@ import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
 import Write, { loader as writeLoader } from "./components/write";
 import { action as writeAction } from "./components/WritingArea";
-import MainPage from "./components/MainPage";
 import MyPage from "./components/MyPage";
 import PostPage from "./components/PostPage";
-import PopularPostPage from "./pages/PopularPost";
+import PopularPostPage, { loader as postListLoader } from "./pages/PopularPost";
 import ErrorPage from "./pages/Error";
 
 export const queryClient = new QueryClient();
@@ -44,9 +43,11 @@ const router = createBrowserRouter([
         loader: writeLoader,
         action: writeAction,
       },
+
       {
-        path: "/Mainpage",
-        element: <MainPage />,
+        path: "/posts/list/:cateId/",
+        element: <PopularPostPage />,
+        loader: postListLoader,
       },
       {
         path: "/Mypage",
@@ -55,14 +56,6 @@ const router = createBrowserRouter([
       {
         path: "/PostPage",
         element: <PostPage />,
-      },
-      {
-        path: "/PopularPostPage",
-        element: <PopularPostPage />,
-      },
-      {
-        path: "/ErrorPage",
-        element: <ErrorPage />,
       },
       {
         path: "/SearchPage",

@@ -1,7 +1,5 @@
-// src/components/PopularPosts/PopularPostsList.js
-import React from 'react';
-import PopularPostItem from './PopularPostItem';
-import styles from './PopularPostsList.module.css'; // Create this module CSS file for styling
+import PopularPostItem from "./PopularPostItem";
+import styles from "./PopularPostsList.module.css"; // Create this module CSS file for styling
 
 const PopularPostsList = ({ posts }) => {
   return (

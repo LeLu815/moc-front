@@ -338,12 +338,13 @@ button:active {
   gap: 2px;
 }
 .color {
+  position: relative;
   height: 100%;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(120, 120, 120);
+  color: rgb(185, 185, 185);
   font-weight: 600;
   letter-spacing: 1px;
   transition: flex 0.1s linear;
@@ -354,9 +355,15 @@ button:active {
   box-shadow: -1px -3px 9px 1px rgba(0, 0, 0, 0.1);
   background: #fff;
 }
+.color_key {
+  color: rgb(220, 220, 220);
+  position: absolute;
+  top: 40%;
+}
 .color span {
   opacity: 0;
   transition: opacity 0.1s linear;
+  color: rgb(120, 120, 120);
 }
 
 /* .color:nth-child(1) {
@@ -409,4 +416,7 @@ button:active {
 }
 .color:hover span {
   opacity: 1;
+}
+.color:hover .color_key {
+  opacity: 0;
 }

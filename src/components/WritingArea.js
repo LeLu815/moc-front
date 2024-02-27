@@ -69,6 +69,7 @@ const WritingArea = ({ method, event }) => {
         {cateKeysList.map((key) => {
           return (
             <div className={classes.color} key={key}>
+              <div className={classes.color_key}>{key}</div>
               <span>{`${key} : ${cateNameObj[key]}`}</span>
             </div>
           );

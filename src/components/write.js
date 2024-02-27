@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, defer, useRouteLoaderData } from "react-router-dom";
 import { privateApi } from "../util/http.js";
 
 import classes from "./write.module.css";
 import WritingArea from "./WritingArea.js";
-import Advertisement from "./Advertisement.js";
-import Footer from "./Footer";
 
 const Write = () => {
   const navitate = useNavigate();
@@ -15,7 +13,7 @@ const Write = () => {
     if (!isLogin) {
       navitate("/login");
     }
-  }, []);
+  }, [isLogin, navitate]);
   return (
     <div className={classes.container}>
       <div className={classes.writeContainer}>
