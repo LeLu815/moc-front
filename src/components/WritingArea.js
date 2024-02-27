@@ -26,6 +26,7 @@ const cateNameObj = {
   12: "독서",
   13: "음악",
 };
+const cateKeysList = Object.keys(cateNameObj);
 
 // event는 edit 페이지에서 로더함수로 불러와서 데이터를 넣어줄 때 쓰게된다.
 const WritingArea = ({ method, event }) => {
@@ -63,193 +64,204 @@ const WritingArea = ({ method, event }) => {
     setSwitchTo((boolean) => !boolean);
   };
   return (
-    <Form method={method} className={classes.writingArea}>
-      {data && data.name === "AxiosError" && (
-        <div
-          className={`${classes.error_container} ${
-            onClose ? classes.display_none : ""
-          }`}
-        >
-          <div className={classes.error_card}>
-            <div className={classes.error_info}>
-              <span className={classes.error_title}>게시글 오류</span>
-              <span className={classes.error_en}>{data.message}</span>
-              <span className={classes.error_kor}>다시 시도해주세요!</span>
+    <>
+      <div className={classes.cate_container}>
+        {cateKeysList.map((key) => {
+          return (
+            <div className={classes.color} key={key}>
+              <span>{`${key} : ${cateNameObj[key]}`}</span>
             </div>
-            <button
-              type="button"
-              className={classes.error_btn}
-              onClick={() => {
-                setOnClose(true);
-              }}
-            >
-              확인
-            </button>
-          </div>
-        </div>
-      )}
-      <div>
-        <input
-          className={classes.titleInput}
-          id="title"
-          name="title"
-          type="text"
-          placeholder="제목"
-          required
-          defaultValue={event ? event.title : ""}
-        />
-        <input
-          className={classes.contentInput}
-          id="body"
-          name="body"
-          placeholder="내용을 입력하세요."
-          type="text"
-          required
-          defaultValue={event ? event.body : ""}
-        />
-        <div className={classes.actions}>
-          <button
-            className={`${classes.button} ${classes.grey_btn}`}
-            onClick={() => {
-              navigate("..");
-            }}
-          >
-            취소
-          </button>
-          <button
-            type="submit"
-            className={`${classes.button} ${classes.red_btn}`}
-            disabled={disabled}
-            onClick={() => {
-              setOnClose(false);
-            }}
-          >
-            업로드
-          </button>
-        </div>
+          );
+        })}
       </div>
-      <div>
-        <div className={classes.cate_name}>카테고리 설정</div>
-        <div className={classes.calculator}>
-          <div className={classes.output}>
-            <input
-              id="cateId_show"
-              className={classes.result}
-              value={switchTo ? cateNum : cateString}
-              required
-              defaultValue={event ? cateNameObj[`${event.cateId}`] : ""}
-            />
-            <input value={cateNum} id="cateId" name="cateId" type="hidden" />
+      <Form method={method} className={classes.writingArea}>
+        {data && data.name === "AxiosError" && (
+          <div
+            className={`${classes.error_container} ${
+              onClose ? classes.display_none : ""
+            }`}
+          >
+            <div className={classes.error_card}>
+              <div className={classes.error_info}>
+                <span className={classes.error_title}>게시글 오류</span>
+                <span className={classes.error_en}>{data.message}</span>
+                <span className={classes.error_kor}>다시 시도해주세요!</span>
+              </div>
+              <button
+                type="button"
+                className={classes.error_btn}
+                onClick={() => {
+                  setOnClose(true);
+                }}
+              >
+                확인
+              </button>
+            </div>
           </div>
-          <div className={classes.buttons}>
+        )}
+        <div>
+          <input
+            className={classes.titleInput}
+            id="title"
+            name="title"
+            type="text"
+            placeholder="제목"
+            required
+            defaultValue={event ? event.title : ""}
+          />
+          <input
+            className={classes.contentInput}
+            id="body"
+            name="body"
+            placeholder="내용을 입력하세요."
+            type="text"
+            required
+            defaultValue={event ? event.body : ""}
+          />
+          <div className={classes.actions}>
             <button
-              type="button"
+              className={`${classes.button} ${classes.grey_btn}`}
               onClick={() => {
-                handleClick("1");
+                navigate("..");
               }}
             >
-              1
+              취소
             </button>
             <button
-              type="button"
+              type="submit"
+              className={`${classes.button} ${classes.red_btn}`}
+              disabled={disabled}
               onClick={() => {
-                handleClick("2");
+                setOnClose(false);
               }}
             >
-              2
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("3");
-              }}
-            >
-              3
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("4");
-              }}
-            >
-              4
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("5");
-              }}
-            >
-              5
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("6");
-              }}
-            >
-              6
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("7");
-              }}
-            >
-              7
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("8");
-              }}
-            >
-              8
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("9");
-              }}
-            >
-              9
-            </button>
-            <button
-              className={classes["bg-red"]}
-              onClick={handleDelete}
-              type="button"
-            >
-              C
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleClick("0");
-              }}
-            >
-              0
-            </button>
-            <button
-              className={classes["bg-green"]}
-              onClick={onChangeToText}
-              type="button"
-            >
-              =
+              업로드
             </button>
           </div>
         </div>
-        <div className={classes.hash_title}>해시태그</div>
-        <input
-          type="text"
-          name="hash"
-          id="hash"
-          className={classes.input_hash}
-          placeholder="해시태그 ,(쉼표)로 구분해서 작성해주세요!"
-          maxLength="40"
-          required
-        />
-      </div>
-    </Form>
+        <div>
+          <div className={classes.cate_name}>카테고리 설정</div>
+          <div className={classes.calculator}>
+            <div className={classes.output}>
+              <input
+                id="cateId_show"
+                className={classes.result}
+                value={switchTo ? cateNum : cateString}
+                required
+                defaultValue={event ? cateNameObj[`${event.cateId}`] : ""}
+              />
+              <input value={cateNum} id="cateId" name="cateId" type="hidden" />
+            </div>
+            <div className={classes.buttons}>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("1");
+                }}
+              >
+                1
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("2");
+                }}
+              >
+                2
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("3");
+                }}
+              >
+                3
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("4");
+                }}
+              >
+                4
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("5");
+                }}
+              >
+                5
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("6");
+                }}
+              >
+                6
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("7");
+                }}
+              >
+                7
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("8");
+                }}
+              >
+                8
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("9");
+                }}
+              >
+                9
+              </button>
+              <button
+                className={classes["bg-red"]}
+                onClick={handleDelete}
+                type="button"
+              >
+                C
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleClick("0");
+                }}
+              >
+                0
+              </button>
+              <button
+                className={classes["bg-green"]}
+                onClick={onChangeToText}
+                type="button"
+              >
+                =
+              </button>
+            </div>
+          </div>
+          <div className={classes.hash_title}>해시태그</div>
+          <input
+            type="text"
+            name="hash"
+            id="hash"
+            className={classes.input_hash}
+            placeholder="해시태그 ,(쉼표)로 구분해서 작성해주세요!"
+            maxLength="40"
+            required
+          />
+        </div>
+      </Form>
+    </>
   );
 };
 
