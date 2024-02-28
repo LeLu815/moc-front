@@ -22,8 +22,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootPage />,
     id: "root",
-    errorElement: <ErrorPage />,
     loader: defaultLoader,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage />, loader: homeLoader },
       {
@@ -50,13 +50,14 @@ const router = createBrowserRouter([
         loader: postListLoader,
       },
       {
+        path: "/posts/detail/:postId/",
+        element: <PostPage />,
+      },
+      {
         path: "/Mypage",
         element: <MyPage />,
       },
-      {
-        path: "/PostPage",
-        element: <PostPage />,
-      },
+
       {
         path: "/SearchPage",
         element: <SearchPage />,

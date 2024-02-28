@@ -1,9 +1,9 @@
-import { Await, defer, useLoaderData } from "react-router-dom";
+import { Await, defer, json, redirect, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 
 import PopularList from "../components/PopularPostsList";
 import styles from "./PopularPost.module.css"; // Create this module CSS file for styling
-import { privateApi } from "../util/http";
+import { publicApi } from "../util/http";
 
 const popularPosts = [
   {
@@ -68,15 +68,40 @@ const PopularPostPage = () => {
 export default PopularPostPage;
 
 async function loadPostsList(id) {
-  const response = await privateApi.get(`posts/list/${id}/?page=1`);
-  console.log(response.data.postList);
+  const response = await publicApi.get(`posts/list/${id}/?page=1`);
   return response.data.postList;
+  // try {
+  //   const response = await publicApi.get(`posts/list/${id}/?page=1`);
+  //   return response.data.postList;
+  // } catch (error) {
+  //   console.log("error :", error);
+  //   throw new Response("Not Found", { status: 404 });
+  // }
+
+  // try {
+  //   const response = await publicApi.get(`posts/list/${id}/?page=1`);
+  //   // console.log(response.data.postList);
+  //   // if (response.status === 404) {
+  //   //   console.log("404");
+  //   //   throw json({ status: "404" });
+  //   // }
+  //   return response.data.postList;
+  // } catch (error) {
+  //   if (error.response.status === 404) {
+  //     console.log("404");
+  //     // throw err
+  //     throw new Response("Not Found", { status: 404 });
+  //   }
+  //   return error;
+  // }
 }
 
-export const loader = ({ params }) => {
+export const loader = async ({ params }) => {
   const id = params.cateId;
-  return defer({
-    postsList: loadPostsList(1),
-    id,
-  });
+  const response = await publicApi.get(`posts/list/${id}/?page=1`);
+  return { postsList: response.data.postList, id };
+  // return defer({
+  //   postsList: loadPostsList(id),
+  //   id,
+  // });
 };
