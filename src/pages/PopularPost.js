@@ -50,6 +50,7 @@ const cateNameObj = {
 };
 const PopularPostPage = () => {
   const { postsList, id } = useLoaderData();
+  console.log(postsList);
 
   return (
     <div className={styles.page}>
@@ -58,7 +59,8 @@ const PopularPostPage = () => {
       </header>
       <Suspense>
         <Await resolve={postsList}>
-          <PopularList posts={popularPosts} />
+          <PopularList posts={postsList} />
+          {/* <PopularList posts={popularPosts} /> */}
         </Await>
       </Suspense>
     </div>

@@ -12,7 +12,7 @@ import { defaultLoader } from "./util/auth";
 import Write, { loader as writeLoader } from "./components/write";
 import { action as writeAction } from "./components/WritingArea";
 import MyPage from "./components/MyPage";
-import PostPage from "./components/PostPage";
+import PostPage, { loader as postPageLoader } from "./components/PostPage";
 import PopularPostPage, { loader as postListLoader } from "./pages/PopularPost";
 import ErrorPage from "./pages/Error";
 
@@ -52,6 +52,7 @@ const router = createBrowserRouter([
       {
         path: "/posts/detail/:postId/",
         element: <PostPage />,
+        loader: postPageLoader,
       },
       {
         path: "/Mypage",
