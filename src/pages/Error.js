@@ -14,7 +14,7 @@ const ErrorPage = () => {
   let en_message = "";
 
   const goHome = () => {
-    navigate("/"); // Make sure this path is correctly defined in your router
+    navigate("/");
   };
   if (error.status === 500) {
     message = JSON.parse().message;

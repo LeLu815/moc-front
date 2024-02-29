@@ -305,22 +305,19 @@ export async function action({ request, params }) {
   // 통신에 오류가 생겼을 때의 대처
   try {
     const response = await privateApi.post(`${path}`, eventData);
-    if (response.status === 404) {
-      console.log("404 :", response);
+    if (response.status === 422) {
+      console.log("422");
       return response;
     }
-    return redirect("/PopularPostPage");
+    return redirect(`/posts/list/${cateId}/`);
   } catch (error) {
     console.log(error);
-    if (error.response.status === 422) {
-      console.log("response 422 :", error);
-      return error;
-    }
     if (error.response.status === 404) {
-      console.log("error 404 : error");
+      console.log("404");
       return error;
     }
     if (error.response.status === 500) {
+      console.log("500");
       return error;
     }
   }
