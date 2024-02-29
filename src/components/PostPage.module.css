@@ -145,12 +145,36 @@
 
 .commentForm {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   flex: 1;
   max-width: 1200px; /* 최대 너비를 설정하여 너무 넓어지는 것을 방지 */
-  align-items: center;
-  padding: 20px;
+  padding: 3rem;
   background: #f5f5f5; /* Consistent with comments section */
+}
+.commet_info {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.like_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.like_section:hover {
+  cursor: pointer;
+}
+.like_text {
+  font-size: 1.2rem;
+}
+.commet_input_container {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
 }
 
 .commentForm input[type="text"] {
@@ -158,17 +182,4 @@
   padding: 10px;
   border: 1px solid #ddd; /* Light grey border */
   border-radius: 4px; /* Rounded corners */
-}
-
-.commentForm button {
-  padding: 10px 20px;
-  background-color: #007bff; /* Bootstrap primary color for the button */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.commentForm button:hover {
-  background-color: #0069d9; /* Darker shade for button on hover */
 }
