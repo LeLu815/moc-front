@@ -1,20 +1,72 @@
 import { useState, useRef } from "react";
 import { privateApi } from "../util/http";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import classes from "./PostPage.module.css";
 import styles from "./PostComment.module.css";
+import Loading from "./style/Loading/Loading";
+
+const sendPostLikes = async (id) => {
+  try {
+    const response = await privateApi.get(`posts/like/${id}/`);
+    console.log(response);
+  } catch (error) {
+    console.log("like error :", error);
+  }
+};
 
 const PostComment = (props) => {
-  const [isError, setIsError] = useState(true);
   const ref = useRef(null);
   const navigate = useNavigate();
-  const handleClickLikes = () => {
-    ref.current.click();
+
+  const [isError, setIsError] = useState(false);
+  const [newCommentsList, setNewCommentsList] = useState([]);
+  const [inputError, setInputError] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const user = useSelector((state) => state.user.user);
+
+  const { comments, postId, likedList } = props;
+  console.log("postId :", comments, postId, likedList, user);
+
+  const handleClickLikes = (e) => {
+    if (!isLoggedIn) {
+      setIsError(true);
+    } else {
+      ref.current.click();
+      if (postId) {
+        try {
+          sendPostLikes(postId);
+        } catch (error) {}
+      } else {
+        setIsError(true);
+      }
+    }
   };
 
-  const comment = props.comments;
-  console.log("comment :", comment);
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    if (commentText.length === 0) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await privateApi.post(`/comments/create/${postId}/`, {
+        body: commentText,
+      });
+      console.log("댓글 response :", response);
+      setCommentText("");
+      setInputError(false);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log("error :", error);
+      setInputError(true);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -57,14 +109,18 @@ const PostComment = (props) => {
       )}
       <div className={classes.commentForm}>
         <div className={classes.commet_info}>
-          <div className={classes.like_section} onClick={handleClickLikes}>
+          <div className={classes.like_section}>
+            <div
+              className={classes.like_section_cover}
+              onClick={handleClickLikes}
+            ></div>
             <div className={styles["con-like"]}>
               <input
                 className={styles.like}
                 type="checkbox"
                 title="like"
                 ref={ref}
-                onClick={handleClickLikes}
+                defaultChecked={user && likedList.indexOf(user.id) !== -1}
               />
               <div className={styles.checkmark}>
                 <svg
@@ -116,16 +172,40 @@ const PostComment = (props) => {
             </div>
             <span className={classes.like_text}>좋아요</span>
           </div>
-          <div>댓글 {comment ? comment.length : 0}</div>
+          <div>댓글 {comments ? comments.length : 0}</div>
         </div>
-        <div className={classes.commet_input_container}>
-          <input type="text" placeholder="댓글을 작성하세요" />
-          <button type="submit">댓글 작성</button>
+        <div className={classes.error_input_msg}>
+          {inputError && "댓글 생성 오류"}
         </div>
+        <form
+          className={classes.commet_input_container}
+          onSubmit={handleSubmitComment}
+        >
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <input
+                name="commentBody"
+                type="text"
+                value={commentText}
+                className={inputError ? classes.error_input : ""}
+                onChange={(e) => {
+                  setCommentText(e.target.value);
+                }}
+                placeholder="댓글을 작성하세요"
+              />
+              <button type="submit" disabled={commentText.length === 0}>
+                댓글 작성
+              </button>
+            </>
+          )}
+        </form>
       </div>
       <div className={classes.comments}>
-        {comment &&
-          comment.map((comment) => (
+        {}
+        {comments &&
+          comments.map((comment) => (
             <div key={comment.id} className={classes.comment}>
               {comment.text}
             </div>

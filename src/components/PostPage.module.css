@@ -160,10 +160,19 @@
 }
 
 .like_section {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+.like_section_cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
 }
 .like_section:hover {
   cursor: pointer;
@@ -182,4 +191,12 @@
   padding: 10px;
   border: 1px solid #ddd; /* Light grey border */
   border-radius: 4px; /* Rounded corners */
+}
+.error_input {
+  box-shadow: 0 0 0.4rem 0.1rem rgba(255, 0, 0, 0.7);
+}
+.error_input_msg {
+  color: #bf0426;
+  font-weight: 700;
+  font-size: 0.7rem;
 }

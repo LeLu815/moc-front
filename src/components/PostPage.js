@@ -69,7 +69,7 @@ const PostPage = () => {
             </span>
           </div>
           <div className={classes.private_postMeta}>
-            {loaderData.data && loaderData.data.user === user.id && (
+            {user && loaderData.data && loaderData.data.user === user.id && (
               <>
                 <button type="button">수정</button>
                 <button type="button">삭제</button>
@@ -99,6 +99,8 @@ const PostPage = () => {
       </div>
       <PostComment
         comments={loaderData.data ? loaderData.data.comments : false}
+        postId={loaderData.data ? loaderData.data.id : false}
+        likedList={loaderData.data ? loaderData.data.like : false}
       />
     </div>
   );

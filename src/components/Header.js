@@ -25,7 +25,6 @@ const Header = (props) => {
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("user");
         dispatch(userAction.logoutUsrData());
-        navigate("/login");
       } else {
         // 로그아웃이 안됨
       }
