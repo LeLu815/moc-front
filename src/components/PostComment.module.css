@@ -1,0 +1,143 @@
+.con-like {
+  --red: rgb(255, 50, 50);
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.con-like .like {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.con-like .checkmark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.con-like .outline,
+.con-like .filled {
+  fill: var(--red);
+  position: absolute;
+}
+
+.con-like .filled {
+  animation: kfr-filled 0.5s;
+  display: none;
+}
+
+.con-like .celebrate {
+  position: absolute;
+  animation: kfr-celebrate 0.5s;
+  animation-fill-mode: forwards;
+  display: none;
+}
+
+.con-like .poly {
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.con-like .like:checked ~ .checkmark .filled {
+  display: block;
+}
+
+.con-like .like:checked ~ .checkmark .celebrate {
+  display: block;
+}
+
+@keyframes kfr-filled {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes kfr-celebrate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.error_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 40;
+  backdrop-filter: blur(4px);
+}
+.error_card {
+  z-index: 50;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 0 0.4rem 0.2rem rgb(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  padding: 2.5rem 0;
+}
+.error_btn_section {
+  display: flex;
+  gap: 0.7rem;
+}
+.error_info {
+  display: flex;
+  flex-direction: column;
+}
+.error_title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.error_en {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+  color: #a6a6a6;
+}
+.error_kor {
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+.error_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 5rem;
+  padding: 0.8rem 0;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+}
