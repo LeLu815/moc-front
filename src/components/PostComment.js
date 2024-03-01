@@ -1,19 +1,71 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { privateApi } from "../util/http";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./PostPage.module.css";
 import styles from "./PostComment.module.css";
 
 const PostComment = (props) => {
+  const [isError, setIsError] = useState(true);
+  const ref = useRef(null);
+  const navigate = useNavigate();
+  const handleClickLikes = () => {
+    ref.current.click();
+  };
+
   const comment = props.comments;
   console.log("comment :", comment);
 
   return (
     <>
+      {isError && (
+        <div className={styles.error_container}>
+          <div className={styles.error_card}>
+            <div className={styles.error_info}>
+              <span className={styles.error_title}>
+                게시글이 마음에 드시나요?
+              </span>
+              <span className={styles.error_kor}>
+                로그인하여 의견을 알려주세요.
+              </span>
+              <span className={styles.error_en}>
+                Don’t Waste a Single Second : Time-Efficient Society
+              </span>
+            </div>
+            <div className={styles.error_btn_section}>
+              <button
+                type="button"
+                className={styles.error_btn}
+                onClick={() => {
+                  setIsError(false);
+                }}
+              >
+                취소
+              </button>
+              <button
+                type="button"
+                className={styles.error_btn}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                로그인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className={classes.commentForm}>
         <div className={classes.commet_info}>
-          <div className={classes.like_section}>
+          <div className={classes.like_section} onClick={handleClickLikes}>
             <div className={styles["con-like"]}>
-              <input className={styles.like} type="checkbox" title="like" />
+              <input
+                className={styles.like}
+                type="checkbox"
+                title="like"
+                ref={ref}
+                onClick={handleClickLikes}
+              />
               <div className={styles.checkmark}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
