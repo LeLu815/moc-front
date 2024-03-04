@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import classes from "./PostPage.module.css";
 import styles from "./PostComment.module.css";
 import Loading from "./style/Loading/Loading";
+import Comment from "./Comment";
 
 const sendPostLikes = async (id) => {
   try {
@@ -29,6 +30,7 @@ const PostComment = (props) => {
   const user = useSelector((state) => state.user.user);
 
   const { comments, postId, likedList } = props;
+
   console.log("postId :", comments, postId, likedList, user);
   console.log("newCommentsList :", newCommentsList);
 
@@ -209,25 +211,14 @@ const PostComment = (props) => {
       <div className={classes.comments}>
         {newCommentsList
           ? newCommentsList.map((comment) => (
-              <div key={comment.id} className={classes.comment}>
-                {comment.text}
-              </div>
+              <Comment key={comment.id} comment={comment} user={user} />
+              // <div key={comment.id} className={classes.comment}>
+              //   {comment.text}
+              // </div>
             ))
           : comments &&
             comments.map((comment) => (
-              <div key={comment.id} className={classes.comment}>
-                <div className={classes}>
-                  <span className={classes}>user{comment.user}</span>
-                  <span className={classes}>
-                    {comment.user === user.id && "작성자"}
-                  </span>
-                </div>
-                <div className={classes}>{comment.body}</div>
-                <div className={classes}>
-                  <span>{comment.created_at}</span>
-                  <span></span>
-                </div>
-              </div>
+              <Comment key={comment.id} comment={comment} user={user} />
             ))}
       </div>
     </>
