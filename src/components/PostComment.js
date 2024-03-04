@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import classes from "./PostPage.module.css";
 import styles from "./PostComment.module.css";
 import Loading from "./style/Loading/Loading";
+import Comment from "./Comment";
 
 const sendPostLikes = async (id) => {
   try {
@@ -21,7 +22,7 @@ const PostComment = (props) => {
   const navigate = useNavigate();
 
   const [isError, setIsError] = useState(false);
-  const [newCommentsList, setNewCommentsList] = useState([]);
+  const [newCommentsList, setNewCommentsList] = useState(null);
   const [inputError, setInputError] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,9 @@ const PostComment = (props) => {
   const user = useSelector((state) => state.user.user);
 
   const { comments, postId, likedList } = props;
+
   console.log("postId :", comments, postId, likedList, user);
+  console.log("newCommentsList :", newCommentsList);
 
   const handleClickLikes = (e) => {
     if (!isLoggedIn) {
@@ -53,10 +56,13 @@ const PostComment = (props) => {
     }
     setIsLoading(true);
     try {
-      const response = await privateApi.post(`/comments/create/${postId}/`, {
+      // 여기서 생성된 댓글들은 로더 함수에서 넘어오는 인수로는 잡히지 않는다 따라서 내가 useState로 성공 메세지를 받으면 직접 업데이트 해주는 방법이 있다. (아님)
+      // 응답 데이터가 해당 게시글 전체 데이터구나...
+      const response = await privateApi.post(`comments/create/${postId}/`, {
         body: commentText,
       });
-      console.log("댓글 response :", response);
+      const commentDataList = response.data.comments;
+      setNewCommentsList(commentDataList);
       setCommentText("");
       setInputError(false);
 
@@ -203,13 +209,17 @@ const PostComment = (props) => {
         </form>
       </div>
       <div className={classes.comments}>
-        {}
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment.id} className={classes.comment}>
-              {comment.text}
-            </div>
-          ))}
+        {newCommentsList
+          ? newCommentsList.map((comment) => (
+              <Comment key={comment.id} comment={comment} user={user} />
+              // <div key={comment.id} className={classes.comment}>
+              //   {comment.text}
+              // </div>
+            ))
+          : comments &&
+            comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} user={user} />
+            ))}
       </div>
     </>
   );

@@ -23,10 +23,10 @@ const PopularPostItem = (props) => {
         <div className={styles.info_box}>
           <div className={styles.stats}>
             <span className={styles.likes}>
-              {props.likes ? props.likes : "0"} likes
+              {props.like_cnt ? props.like_cnt : "0"} likes
             </span>
             <span className={styles.comments}>
-              {props.comments ? props.comments : "0"} comments
+              {props.comment_cnt ? props.comment_cnt : "0"} comments
             </span>
           </div>
           <div
