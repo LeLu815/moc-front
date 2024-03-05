@@ -15,6 +15,7 @@ import MyPage from "./components/MyPage";
 import PostPage, { loader as postPageLoader } from "./components/PostPage";
 import PopularPostPage, { loader as postListLoader } from "./pages/PopularPost";
 import ErrorPage from "./pages/Error";
+import Categories from "./pages/Categories.js";
 
 export const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -43,7 +44,10 @@ const router = createBrowserRouter([
         loader: writeLoader,
         action: writeAction,
       },
-
+      {
+        path: "/posts/list/",
+        element: <Categories />,
+      },
       {
         path: "/posts/list/:cateId/",
         element: <PopularPostPage />,
