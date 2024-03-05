@@ -1,0 +1,65 @@
+.containder {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  margin-bottom: 7rem;
+}
+
+.cate_container {
+  display: flex;
+  border: 1px solid #ccc;
+  height: 12rem;
+}
+.cate_container:hover {
+  cursor: pointer;
+}
+
+.img_container {
+  width: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img {
+  width: 20rem;
+  object-fit: cover;
+}
+.name {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+  font-size: 4.5rem;
+
+  position: relative;
+
+  transition: all 1s;
+  overflow: hidden;
+  color: purple;
+}
+.name:hover {
+  color: white;
+}
+
+.name::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -6rem;
+  transform: skewX(45deg);
+  background-color: purple;
+  z-index: -1;
+  transition: all 1s;
+}
+
+.name:hover::before {
+  width: 160%;
+}

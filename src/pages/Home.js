@@ -114,11 +114,18 @@ const HomePage = () => {
                 />
                 카테고리
               </span>
-              <span className={classes.see_more}>더보기</span>
+              <span
+                className={classes.see_more}
+                onClick={() => {
+                  navitate("/posts/list/");
+                }}
+              >
+                더보기
+              </span>
             </div>
             <ul>
               {hashtags.map((post, index) => (
-                <NewsItem key={index} title={post} />
+                <NewsItem key={index} title={post} id={index + 1} />
               ))}
             </ul>
           </div>
