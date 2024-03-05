@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import PopularList from "../components/PopularPostsList";
 import styles from "./PopularPost.module.css"; // Create this module CSS file for styling
 import { publicApi } from "../util/http";
+import CateNav from "../components/CateNav";
 
 const popularPosts = [
   {
@@ -50,6 +51,7 @@ const cateNameObj = {
 };
 const PopularPostPage = () => {
   const { postsList, id } = useLoaderData();
+
   console.log(postsList);
 
   return (
@@ -57,6 +59,14 @@ const PopularPostPage = () => {
       <header className={styles.header}>
         <h1>{cateNameObj[id]} 게시판</h1>
       </header>
+      <div className={styles.cate_nave}>
+        {Object.keys(cateNameObj).map((value, index) => {
+          if (index === 0) {
+            return;
+          }
+          return <CateNav id={value} name={cateNameObj[value]} />;
+        })}
+      </div>
       <Suspense>
         <Await resolve={postsList}>
           <PopularList posts={postsList} />

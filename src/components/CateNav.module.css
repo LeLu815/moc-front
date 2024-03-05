@@ -1,0 +1,20 @@
+.nav_btn {
+  padding: 0.5rem;
+
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  border-radius: 0.5rem;
+
+  color: rgb(94, 94, 94);
+}
+.nav_btn:hover {
+  scale: 1.2;
+  color: black;
+}
+
+.active {
+  color: white;
+  background-color: rgb(69, 69, 69);
+  font-weight: 600;
+}
