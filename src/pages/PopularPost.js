@@ -1,4 +1,4 @@
-import { Await, defer, json, redirect, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 
 import PopularList from "../components/PopularPostsList";

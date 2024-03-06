@@ -38,7 +38,12 @@ const HomePage = () => {
                 />
                 인기글
               </span>
-              <span className={classes.see_more}>더보기</span>
+              <span
+                className={classes.see_more}
+                onClick={() => navitate("/posts/popular/")}
+              >
+                더보기
+              </span>
             </div>
             <Suspense
               fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
@@ -52,6 +57,7 @@ const HomePage = () => {
                         key={event.id}
                         title={event.title}
                         date={event.created_at}
+                        detailId={event.id}
                       />
                     ));
                 }}
@@ -99,6 +105,7 @@ const HomePage = () => {
                         key={event.id}
                         title={event.title}
                         date={event.created_at}
+                        detailId={event.id}
                       />
                     ));
                 }}
@@ -139,12 +146,10 @@ export default HomePage;
 
 async function getPopularContents() {
   const response = await publicApi.get("posts/list/1/");
-  console.log("getPopularContents :", response.data.postList);
   return response.data.postList;
 }
 async function getRecentContent() {
   const response = await publicApi.get("posts/list/0/");
-  console.log("getRecentContent :", response.data.postList);
   return response.data.postList;
 }
 
