@@ -297,7 +297,7 @@ export async function action({ request, params }) {
   // 같은 이벤트 폼 안에서 데이터를 생성하고 수정할 수 있도록 받습니다.
   let path;
   if (method === "POST") {
-    path = `posts/create1/${cateId}/`;
+    path = `posts/create/${cateId}/`;
   } else if (method === "PUT") {
     path = `posts/${cateId}/`;
   }

@@ -16,7 +16,7 @@ const HeaderNav = () => {
       </li>
       <li className={styles.li}>
         <NavLink
-          to="/popular"
+          to="/posts/popular/"
           className={({ isActive }) => (isActive ? styles.active : undefined)}
           end
         >
@@ -25,7 +25,7 @@ const HeaderNav = () => {
       </li>
       <li className={styles.li}>
         <NavLink
-          to="/current"
+          to="/posts/news/"
           className={({ isActive }) => (isActive ? styles.active : undefined)}
           end
         >

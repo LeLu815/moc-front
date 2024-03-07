@@ -16,6 +16,7 @@ import SearchBar from "../components/SearchBar";
 import NewsItem from "../components/News";
 import { publicApi } from "../util/http";
 import Clock from "../components/Clock";
+import TapeShape from "../components/style/TapeShape";
 
 const HomePage = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -38,7 +39,12 @@ const HomePage = () => {
                 />
                 인기글
               </span>
-              <span className={classes.see_more}>더보기</span>
+              <span
+                className={classes.see_more}
+                onClick={() => navitate("/posts/popular/")}
+              >
+                더보기
+              </span>
             </div>
             <Suspense
               fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
@@ -52,6 +58,7 @@ const HomePage = () => {
                         key={event.id}
                         title={event.title}
                         date={event.created_at}
+                        detailId={event.id}
                       />
                     ));
                 }}
@@ -59,22 +66,28 @@ const HomePage = () => {
             </Suspense>
           </div>
           <div className={classes.section_clock}>
-            <div className={styles.card}>
-              <div className={styles["card-details"]}>
-                <div className={styles["text-title"]}>Save</div>
-                <div className={styles["text-title"]}>Your</div>
-                <div className={styles["text-title"]}>Time</div>
+            {isLoggedIn ? (
+              <div>
+                <TapeShape />
               </div>
-              <button
-                className={styles["card-button"]}
-                onClick={() => {
-                  navitate("/login");
-                }}
-              >
-                Get start
-              </button>
-              <Clock />
-            </div>
+            ) : (
+              <div className={styles.card}>
+                <div className={styles["card-details"]}>
+                  <div className={styles["text-title"]}>Save</div>
+                  <div className={styles["text-title"]}>Your</div>
+                  <div className={styles["text-title"]}>Time</div>
+                </div>
+                <button
+                  className={styles["card-button"]}
+                  onClick={() => {
+                    navitate("/login");
+                  }}
+                >
+                  Get start
+                </button>
+                <Clock />
+              </div>
+            )}
           </div>
           <div className={classes.section}>
             <div className={classes.section_header}>
@@ -99,6 +112,7 @@ const HomePage = () => {
                         key={event.id}
                         title={event.title}
                         date={event.created_at}
+                        detailId={event.id}
                       />
                     ));
                 }}
@@ -139,12 +153,10 @@ export default HomePage;
 
 async function getPopularContents() {
   const response = await publicApi.get("posts/list/1/");
-  console.log("getPopularContents :", response.data.postList);
   return response.data.postList;
 }
 async function getRecentContent() {
   const response = await publicApi.get("posts/list/0/");
-  console.log("getRecentContent :", response.data.postList);
   return response.data.postList;
 }
 

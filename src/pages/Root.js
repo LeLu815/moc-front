@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { userAction } from "../store/user-slice";
+import Advertisement from "../components/style/Advertisement";
 
 const RootPage = () => {
   const dispatch = useDispatch();
@@ -26,9 +27,8 @@ const RootPage = () => {
   return (
     <>
       <Header />
-      <main
-        style={{ paddingTop: "9rem", maxWidth: "1140px", margin: "0 auto" }}
-      >
+      <Advertisement />
+      <main style={{ paddingTop: "3em", maxWidth: "1140px", margin: "0 auto" }}>
         <Outlet />
       </main>
       <Footer />

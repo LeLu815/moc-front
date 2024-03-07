@@ -14,6 +14,9 @@ import { action as writeAction } from "./components/WritingArea";
 import MyPage from "./components/MyPage";
 import PostPage, { loader as postPageLoader } from "./components/PostPage";
 import PopularPostPage, { loader as postListLoader } from "./pages/PopularPost";
+import PopularNews, {
+  loader as popularNewsLoader,
+} from "./pages/PopularNews.js";
 import ErrorPage from "./pages/Error";
 import Categories from "./pages/Categories.js";
 
@@ -54,15 +57,25 @@ const router = createBrowserRouter([
         loader: postListLoader,
       },
       {
+        path: "/posts/popular/",
+        element: <PopularNews />,
+        loader: popularNewsLoader,
+      },
+      {
+        path: "/posts/news/",
+        element: <PopularNews />,
+        loader: popularNewsLoader,
+      },
+      {
         path: "/posts/detail/:postId/",
         element: <PostPage />,
         loader: postPageLoader,
       },
+
       {
         path: "/Mypage",
         element: <MyPage />,
       },
-
       {
         path: "/SearchPage",
         element: <SearchPage />,

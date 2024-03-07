@@ -2,14 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import classes from "./MainPage.module.css";
-const News = ({ title, date, id }) => {
+const News = ({ title, date, id, detailId }) => {
   const navitate = useNavigate();
   const formedDate = date && new Date(date);
   return (
     <div
       className={classes.newsItem}
       onClick={() => {
-        navitate(`/posts/list/${id}/`);
+        if (id) {
+          navitate(`/posts/list/${id}/`);
+        } else {
+          navitate(`/posts/detail/${detailId}/`);
+        }
       }}
     >
       <span>{title}</span>
