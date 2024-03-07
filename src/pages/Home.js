@@ -16,6 +16,7 @@ import SearchBar from "../components/SearchBar";
 import NewsItem from "../components/News";
 import { publicApi } from "../util/http";
 import Clock from "../components/Clock";
+import TapeShape from "../components/style/TapeShape";
 
 const HomePage = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -65,22 +66,28 @@ const HomePage = () => {
             </Suspense>
           </div>
           <div className={classes.section_clock}>
-            <div className={styles.card}>
-              <div className={styles["card-details"]}>
-                <div className={styles["text-title"]}>Save</div>
-                <div className={styles["text-title"]}>Your</div>
-                <div className={styles["text-title"]}>Time</div>
+            {isLoggedIn ? (
+              <div>
+                <TapeShape />
               </div>
-              <button
-                className={styles["card-button"]}
-                onClick={() => {
-                  navitate("/login");
-                }}
-              >
-                Get start
-              </button>
-              <Clock />
-            </div>
+            ) : (
+              <div className={styles.card}>
+                <div className={styles["card-details"]}>
+                  <div className={styles["text-title"]}>Save</div>
+                  <div className={styles["text-title"]}>Your</div>
+                  <div className={styles["text-title"]}>Time</div>
+                </div>
+                <button
+                  className={styles["card-button"]}
+                  onClick={() => {
+                    navitate("/login");
+                  }}
+                >
+                  Get start
+                </button>
+                <Clock />
+              </div>
+            )}
           </div>
           <div className={classes.section}>
             <div className={classes.section_header}>

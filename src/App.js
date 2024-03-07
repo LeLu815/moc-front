@@ -63,8 +63,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts/news/",
-        element: <PopularPostPage />,
-        loader: postListLoader,
+        element: <PopularNews />,
+        loader: popularNewsLoader,
       },
       {
         path: "/posts/detail/:postId/",
