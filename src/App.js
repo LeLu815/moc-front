@@ -73,7 +73,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/Mypage",
+        path: "/mypage",
         element: <MyPage />,
       },
       {
