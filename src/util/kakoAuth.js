@@ -17,7 +17,7 @@ export const getKakaoToken = () => {
 export const sendKaKaoToken = async (token) => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/?code=${token}/`
+      `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/?cod=${token}/`
     );
     if (response.ok) {
       const resDate = await response.json();
