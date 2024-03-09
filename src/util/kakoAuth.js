@@ -15,12 +15,6 @@ export const getKakaoToken = () => {
 };
 
 export const sendKaKaoToken = async (token) => {
-  // 데이터를 보내야하는데...
-  console.log("sendKaKaoToken :", token);
-  // console.log(
-  //   "REACT_APP_SERVER_IP :",
-  //   `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/`
-  // );
   try {
     const response = await fetch(
       `${process.env.REACT_APP_SERVER_IP}accounts/kakao/login/?code=${token}`
