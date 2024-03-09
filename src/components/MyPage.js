@@ -1,7 +1,18 @@
-import React from "react";
+import { useEffect } from "react";
+import { useRouteLoaderData, useNavigate } from "react-router-dom";
+
 import classes from "./MyPage.module.css";
 
 function MyPage() {
+  const navitate = useNavigate();
+  const loaderData = useRouteLoaderData("myPage");
+
+  useEffect(() => {
+    if (!loaderData) {
+      navitate("/login");
+    }
+  });
+
   return (
     <div className={classes.container}>
       <header className={classes.topNav}>
@@ -14,25 +25,34 @@ function MyPage() {
 
       <div className={classes.content}>
         <div className={classes.formContainer}>
-          <div className={classes.logoCircle}> </div>
+          <div
+            className={classes.logoCircle}
+            style={{ backgroundImage: `url(${loaderData.profile_image})` }}
+          >
+            {" "}
+          </div>
           <form className={classes.userInfoForm}>
             <div className={classes.inputFieldsContainer}>
               <div className={classes.inputGroup}>
                 <label>이름</label>
-                <input type="text" placeholder="Your Name" />
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  defaultValue={loaderData && `user_${loaderData.id}`}
+                />
               </div>
               <div className={classes.inputGroup}>
                 <label>닉네임</label>
-                <input type="text" placeholder="Nickname" />
+                <input
+                  type="text"
+                  placeholder="Nickname"
+                  defaultValue={loaderData && loaderData.nickname}
+                />
               </div>
               <div className={classes.inputGroup}>
                 <label>생년월일</label>
                 <input type="text" placeholder="Birthday" />
               </div>
-            </div>
-            <div className={classes.buttonContainer}>
-              <button type="submit">수정</button>
-              <button type="submit">확인</button>
             </div>
           </form>
         </div>
@@ -54,3 +74,8 @@ function MyPage() {
 }
 
 export default MyPage;
+
+export const loader = () => {
+  const userData = localStorage.getItem("user");
+  return JSON.parse(userData);
+};

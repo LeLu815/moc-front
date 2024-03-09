@@ -30,7 +30,7 @@ export const getIsLogin = async () => {
   try {
     const response = await privateApi.get("accounts/mypage/");
     if (response.ok) {
-      return { isLogin: true };
+      return { isLogin: true, userData: response.data };
     }
     return { isLogin: false };
   } catch (error) {

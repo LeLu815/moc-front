@@ -11,7 +11,7 @@ import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
 import Write, { loader as writeLoader } from "./components/write";
 import { action as writeAction } from "./components/WritingArea";
-import MyPage from "./components/MyPage";
+import MyPage, { loader as myPageLoader } from "./components/MyPage";
 import PostPage, { loader as postPageLoader } from "./components/PostPage";
 import PopularPostPage, { loader as postListLoader } from "./pages/PopularPost";
 import PopularNews, {
@@ -75,6 +75,8 @@ const router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MyPage />,
+        id: "myPage",
+        loader: myPageLoader,
       },
       {
         path: "/SearchPage",
