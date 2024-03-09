@@ -74,7 +74,12 @@ const Header = (props) => {
           {isLoggedIn && (
             <>
               {/* <span>{user.nickname}님 안녕하세요!</span> */}
-              <button className={`${styles.button}`} onClick={() => {}}>
+              <button
+                className={`${styles.button}`}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
                 내정보
               </button>
               <button className={`${styles.button}`} onClick={handleLogout}>
