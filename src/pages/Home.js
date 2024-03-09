@@ -49,7 +49,7 @@ const HomePage = () => {
             <Suspense
               fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
             >
-              <Await resolve={popular}>
+              <Await resolve={popular} errorElement={"게시글이 없습니다."}>
                 {(loadedEvents) => {
                   return loadedEvents
                     .slice(0, 6)
@@ -103,7 +103,7 @@ const HomePage = () => {
             <Suspense
               fallback={<p style={{ texeAlign: "center" }}>Loading...</p>}
             >
-              <Await resolve={recent}>
+              <Await resolve={recent} errorElement={"게시글이 없습니다."}>
                 {(loadedEvents) => {
                   return loadedEvents
                     .slice(0, 5)
