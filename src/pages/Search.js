@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useActionData, useFetcher } from "react-router-dom";
 
 import SearchBar from "../components/SearchBar";
-import SearchResults from "../components/SearchResults";
+import PopularPostsList from "../components/PopularPostsList";
 
 const SearchPage = () => {
   const results = useActionData();
@@ -11,7 +11,13 @@ const SearchPage = () => {
   return (
     <div style={{ height: "90vh" }}>
       <SearchBar />
-      <SearchResults results={results ? results : []} />
+      <div style={{ marginTop: "4rem" }}>
+        {results ? (
+          <PopularPostsList posts={results ? results : []} />
+        ) : (
+          <p style={{ textAlign: "center" }}>No results found.</p>
+        )}
+      </div>
     </div>
   );
 };
