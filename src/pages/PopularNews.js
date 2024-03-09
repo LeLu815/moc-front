@@ -53,21 +53,21 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M6 14.25L5.741 15.285C5.59267 15.8785 5.28579 16.4206 4.85319 16.8532C4.42059 17.2858 3.87853 17.5927 3.285 17.741L2.25 18L3.285 18.259C3.87853 18.4073 4.42059 18.7142 4.85319 19.1468C5.28579 19.5794 5.59267 20.1215 5.741 20.715L6 21.75L6.259 20.715C6.40725 20.1216 6.71398 19.5796 7.14639 19.147C7.5788 18.7144 8.12065 18.4075 8.714 18.259L9.75 18L8.714 17.741C8.12065 17.5925 7.5788 17.2856 7.14639 16.853C6.71398 16.4204 6.40725 15.8784 6.259 15.285L6 14.25Z"
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M6.5 4L6.303 4.5915C6.24777 4.75718 6.15472 4.90774 6.03123 5.03123C5.90774 5.15472 5.75718 5.24777 5.5915 5.303L5 5.5L5.5915 5.697C5.75718 5.75223 5.90774 5.84528 6.03123 5.96877C6.15472 6.09226 6.24777 6.24282 6.303 6.4085L6.5 7L6.697 6.4085C6.75223 6.24282 6.84528 6.09226 6.96877 5.96877C7.09226 5.84528 7.24282 5.75223 7.4085 5.697L8 5.5L7.4085 5.303C7.24282 5.24777 7.09226 5.15472 6.96877 5.03123C6.84528 4.90774 6.75223 4.75718 6.697 4.5915L6.5 4Z"
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <span className={classes.text}>다른 게시글 보기</span>
@@ -85,7 +85,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -99,7 +99,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -113,7 +113,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -127,7 +127,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -141,7 +141,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -155,7 +155,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -169,7 +169,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -183,7 +183,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -197,7 +197,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -211,7 +211,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -225,7 +225,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -239,7 +239,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -253,7 +253,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -267,7 +267,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -281,7 +281,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -295,7 +295,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -309,7 +309,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -323,7 +323,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -337,7 +337,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                     <svg
@@ -351,7 +351,7 @@ const PopularNews = () => {
                         fill="black"
                         stroke="black"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                   </span>
@@ -378,7 +378,6 @@ export const loader = async ({ request, params }) => {
   const urlList = request.url.split("/");
   const pageName = urlList[`${urlList.length - 2}`];
 
-  console.log("pageName :", pageName);
   if (pageName === "popular") {
     try {
       const response = await publicApi.get(`daily/popular/yesterday/`);
@@ -394,10 +393,4 @@ export const loader = async ({ request, params }) => {
       return { postsList: [], pageName };
     }
   }
-
-  // return { postsList: response.data, id };
-  // return defer({
-  //   postsList: loadPostsList(id),
-  //   id,
-  // });
 };

@@ -64,13 +64,12 @@ const PopularPostPage = () => {
           if (index === 0) {
             return;
           }
-          return <CateNav id={value} name={cateNameObj[value]} />;
+          return <CateNav key={value} id={value} name={cateNameObj[value]} />;
         })}
       </div>
       <Suspense>
         <Await resolve={postsList}>
           <PopularList posts={postsList} />
-          {/* <PopularList posts={popularPosts} /> */}
         </Await>
       </Suspense>
     </div>
@@ -82,38 +81,10 @@ export default PopularPostPage;
 async function loadPostsList(id) {
   const response = await publicApi.get(`posts/list/${id}/?page=1`);
   return response.data.postList;
-  // try {
-  //   const response = await publicApi.get(`posts/list/${id}/?page=1`);
-  //   return response.data.postList;
-  // } catch (error) {
-  //   console.log("error :", error);
-  //   throw new Response("Not Found", { status: 404 });
-  // }
-
-  // try {
-  //   const response = await publicApi.get(`posts/list/${id}/?page=1`);
-  //   // console.log(response.data.postList);
-  //   // if (response.status === 404) {
-  //   //   console.log("404");
-  //   //   throw json({ status: "404" });
-  //   // }
-  //   return response.data.postList;
-  // } catch (error) {
-  //   if (error.response.status === 404) {
-  //     console.log("404");
-  //     // throw err
-  //     throw new Response("Not Found", { status: 404 });
-  //   }
-  //   return error;
-  // }
 }
 
 export const loader = async ({ params }) => {
   const id = params.cateId;
   const response = await publicApi.get(`posts/list/${id}/?page=1`);
   return { postsList: response.data.postList, id };
-  // return defer({
-  //   postsList: loadPostsList(id),
-  //   id,
-  // });
 };

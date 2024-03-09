@@ -4,9 +4,8 @@ import styles from "./PopularPostsList.module.css"; // Create this module CSS fi
 const PopularPostsList = ({ posts }) => {
   return (
     <div className={styles.list}>
-      {posts.map((post, index) => (
-        <PopularPostItem key={index} {...post} />
-      ))}
+      {posts &&
+        posts.map((post, index) => <PopularPostItem key={index} {...post} />)}
     </div>
   );
 };
