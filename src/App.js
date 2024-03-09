@@ -7,6 +7,7 @@ import RootPage from "./pages/Root";
 import HomePage, { loader as homeLoader } from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SearchPage from "./pages/Search.js";
+import { action as searchAction } from "./components/SearchBar.js";
 import KakaoTokenPage, { loader as tokenLoader } from "./pages/KakaoToken";
 import { defaultLoader } from "./util/auth";
 import Write, { loader as writeLoader } from "./components/write";
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
     loader: defaultLoader,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage />, loader: homeLoader },
+      {
+        index: true,
+        element: <HomePage />,
+        loader: homeLoader,
+        action: searchAction,
+      },
       {
         path: "/login",
         element: <LoginPage />,
@@ -79,8 +85,9 @@ const router = createBrowserRouter([
         loader: myPageLoader,
       },
       {
-        path: "/SearchPage",
+        path: "/search",
         element: <SearchPage />,
+        action: searchAction,
       },
     ],
   },

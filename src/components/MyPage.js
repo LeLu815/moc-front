@@ -60,8 +60,6 @@ function MyPage() {
         <aside className={classes.sidebar}>
           <nav className={classes.menu}>
             <div>마이페이지</div> {/* Static text */}
-            <a href="#info">개인정보</a> {/* Clickable link */}
-            <div>반응</div> {/* Static text */}
             <a href="#like">좋아요</a> {/* Clickable link */}
             <a href="#reply">댓글</a> {/* Clickable link */}
             <div>내 활동</div> {/* Static text */}
